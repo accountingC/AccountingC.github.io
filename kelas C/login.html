@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Input Animation</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-image: url('img/pertemuan1.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.container{
+  background-color: rgba(79, 46, 107, 0.8); /* Mengubah menjadi transparan */
+  padding: 20px 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h1{
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.container a{
+  text-decoration: none;
+  color: rgb(22, 21, 22);
+}
+
+.btn{
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  background-color: violet;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 16px;
+  border: 0;
+  border-radius: 5px;
+  color: #4f2e6b;
+}
+
+.btn:focus{
+  outline: 0;
+}
+
+.btn:active{
+  transform: scale(0.98);
+}
+
+.text{
+  margin-top: 30px;
+  color: #fff;
+}
+
+.form-control{
+  position: relative;
+  margin: 20px 0 40px;
+  width: 300px;
+}
+
+.form-control input{
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #ff8aff solid;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #ffcfff;
+}
+
+.form-control input:focus,
+.form-control input:valid{
+  outline: 0;
+  border-bottom-color: #ffcfff;
+}
+
+.form-control label{
+  position: absolute;
+  top: 15px;
+  left: 0;
+}
+
+.form-control label span{
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  transition: 0.3s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span{
+  color: #ffcfff;
+  transform: translateY(-30px);
+}
+
+.back-btn {
+  background-color: transparent; /* Warna latar belakang transparan */
+  color: #fff; /* Warna teks putih */
+  border: 1px solid #fff; /* Garis tepi putih */
+  padding: 10px; /* Padding untuk tombol */
+  border-radius: 5px; /* Sudut melengkung */
+  cursor: pointer; /* Kursor pointer saat hover */
+  width: 100%; /* Lebar penuh */
+  margin-top: 20px; /* Jarak atas */
+}
+
+.back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Efek hover */
+}
+
+  </style>
+  <body>
+    <div class="container">
+        <h1>Login Form</h1>
+        <form>
+          <div class="form-control">
+            <input type="text" required>
+            <label>Email</label>
+          </div>
+          <div class="form-control">
+            <input type="password" required>
+            <label>Password</label>
+          </div>
+          
+          <button class="btn">Login</button>
+          
+          <p class="text">Don't have an account? <a href="#">Register</a></p>
+        </form>
+        <a href="index.html" class="back-btn"> Kembali ke Home</a>
+      </div>
+    <script>
+        const labels = document.querySelectorAll('.form-control label')
+
+labels.forEach(label => {
+  label.innerHTML = label.innerText
+  .split('')
+  .map((letter, idx) => `<span style="transition-delay:${idx*30}ms">${letter}</span>`)
+  .join('')
+})
+    </script>
+  </body>
+</html>
