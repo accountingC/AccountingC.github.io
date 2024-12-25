@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kelas dan Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="#home"><span class="icon"><i class="fa-solid fa-house-user"></i></span> <span
+                        class="title">Home</span></a>
+            </li>
+            <li>
+                <a href="#profile"><span class="icon"><i class="fa-solid fa-user-graduate"></i></span> <span
+                        class="title">Mahasiswa</span></a>
+            </li>
+            <li>
+                <a href="#memories"><span class="icon"><i class="fa-solid fa-camera"></i></span> <span
+                        class="title">Kenangan</span></a>
+            </li>
+            <li>
+                <a href="login.html"><span class="icon"><i class="fa-solid fa-user"></i></span> <span
+                        class="title">Account</span></a>
+            </li>
+            <li>
+                <a href="https://instagram.com/accounting__c24"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+            </li>
+        </ul>
+    </div>
+
+    <section id="home" class="hero">
+        <svg viewBox="0 0 960 300">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="80%">KELAS C</text>
+            </symbol>
+        
+            <g class = "g-ants">
+                <use xlink:href="#s-text" class="text-copy">K</use>
+                <use xlink:href="#s-text" class="text-copy">E</use>
+                <use xlink:href="#s-text" class="text-copy">L</use>
+                <use xlink:href="#s-text" class="text-copy">A</use>
+                <use xlink:href="#s-text" class="text-copy">S</use>
+            </g>
+        </svg>
+    </section> 
+
+    <div class="move-text">Beban hari ini cuma proses buat laba masa depan. Keep going!</div> <!-- Teks bergerak dari kiri ke kanan -->
+
+    <section id="profile" class="gallery">
+        <h2>Siswa Kelas C</h2>
+        <div class="gallery-container">
+            <!-- Kartu Mahasiswa 1 -->
+            <div class="card">
+                <img src="img/hehe.jpg" alt=" Mahasiswa 1">
+                <div class="card-content">
+                    <h3>Nabil Ariq</h3>
+                    <p>Tidak butuh kata-kata, hanya butuh bukti nyata</p>
+                    <a href="https://instagram.com/accounting__c24"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/bagus.jpg" alt=" Mahasiswa 1">
+                <div class="card-content">
+                    <h3>Bagus Shaputra</h3>
+                    <p>Tidak butuh kata-kata, hanya butuh bukti nyata</p>
+                    <p><a href="https://instagram.com/rence's" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="memories" class="gallery">
+        <h2>Kenangan Kelas C</h2>
+        <div class="gallery-container">
+            <!-- Kartu Kenangan 1 -->
+            <div class="card">
+                <img src="img/pertemuan1.jpg" alt="Kenangan 1">
+                <div class="card-content">
+                    <h3>Kenangan Pertama</h3>
+                    <p>Hari pertama masuk kelas, penuh harapan dan semangat.</p>
+                </div>
+            </div>
+            <!-- Kartu Kenangan 2 -->
+            <div class="card">
+                <img src="img/cod.jpg" alt="Kenangan 2">
+                <div class="card-content">
+                    <h3>Kenangan Kedua</h3>
+                    <p>Mengikuti kegiatan COD Himatansi</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/makrab.jpg" alt="Kenangan 2">
+                <div class="card-content">
+                    <h3>Kenangan Ketiga</h3>
+                    <p>Makrab bersama kelas C</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Kelas C <span id="year"></span></p>
+        <script>
+            const currentYear = new Date().getFullYear();
+            document.getElementById('year').textContent = currentYear;
+        </script>
+    </footer>
+</body>
+</html>
