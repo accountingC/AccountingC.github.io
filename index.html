@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kelas dan Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef; /* Warna latar belakang yang lebih terang */
+        }
+
+        .nav {
+            background-color: black; /* Warna biru */
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav li {
+            margin-right: 20px;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #FFD700; /* Warna emas saat hover */
+        }
+
+        .hero {
+            background-image: url("img/latar.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .moving-text {
+            font-size: 2em;
+            color: black; /* Warna teks */
+            text-align: center;
+            margin: 20px 0;
+            white-space: nowrap; /* Mencegah teks terputus */
+            overflow: hidden; /* Menyembunyikan teks yang keluar dari batas */
+            animation: move 10s linear infinite; /* Animasi bergerak */
+        }
+
+        @keyframes move {
+            0% { transform: translateX(100%); } /* Mulai dari luar kanan */
+            100% { transform: translateX(-100%); } /* Bergerak ke luar kiri */
+        }
+
+        .gallery {
+            padding: 40px 20px;
+            text-align: center;
+            background-image: url("img/bg.jpg"); /* Ganti dengan path gambar latar belakang Anda */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px; /* Menambahkan border-radius jika diinginkan */
+            margin-top: 40px; /* Menambahkan margin atas untuk jarak */
+        }
+
+        .gallery h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Kartu Mahasiswa */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-bottom: 2px solid #f4f4f4;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: black; /* Warna biru untuk nama */
+        }
+
+        .card-content p {
+            font-size: 1.1em;
+            margin:   5px 0;
+            color: #555; /* Warna abu-abu untuk teks */
+        }
+
+        .card-content a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .card-content a:hover {
+            color: #FFD700; /* Warna emas saat hover */
+            text-decoration: underline;
+        }
+
+        .birthday {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #888; /* Warna abu-abu untuk tanggal ulang tahun */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #007BFF; /* Warna biru */
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Gaya untuk pengingat ulang tahun */
+        .birthday-alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .birthday-alert img {
+            width: 50px;
+            height: auto;
+        }
+
+        .birthday-alert h2 {
+            color: #007BFF;
+        }
+
+        .birthday-alert button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .birthday-alert button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const birthdays = [
+                { name: "Nabil Ariq", date: "22-12" },
+                { name: "gtw", date: "2-2" },
+                { name: "gtw", date: "3-3" },
+                { name: "gtw", date: "4-4" },
+                { name: "gtw", date: "5-5" },
+                { name: "gtw", date: "6-6" }
+            ];
+
+            const today = new Date();
+            const currentDate = `${today.getDate()}-${today.getMonth() + 1}`;
+
+            birthdays.forEach(birthday => {
+                if (birthday.date === currentDate) {
+                    const alertBox = document.createElement('div');
+                    alertBox.className = 'birthday-alert';
+                    alertBox.innerHTML = `
+                        <img src="img/gift.png" alt="Kado">
+                        <h2>Selamat Ulang Tahun, ${birthday.name}!</h2>
+                        <p>Semoga hari ini penuh kebahagiaan dan kejutan!</p>
+                        <button onclick="this.parentElement.style.display='none'">Tutup</button>
+                    `;
+                    document.body.appendChild(alertBox);
+                    alertBox.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Welcome to Kelas C</h1>
+    </section> 
+
+    <section id="profile" class="gallery">
+        <h2>Profile Kelas C</h2>
+        <div class="gallery-container">
+            <!-- Kartu Mahasiswa 1 -->
+            <div class="card">
+                <img src="img/hehe.jpg" alt="Mahasiswa 1">
+                <div class="card-content">
+                    <h3>Nabil Ariq</h3>
+                    <p>Tidak butuh kata-kata, hanya butuh bukti nyata</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 1 Januari </p>
+                    <p><a href="https://instagram.com/nabilariq" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 2 -->
+            <div class="card">
+                <img src="img/mahasiswa2.jpg" alt="Mahasiswa 2">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456790</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 2 Februari</p>
+                    <p><a href="https://instagram.com/rinasari" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 3 -->
+            <div class="card">
+                <img src="img/mahasiswa3.jpg" alt="Mahasiswa 3">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456791</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 3 Maret</p>
+                    <p><a href="https://instagram.com/andisetiawan" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 4 -->
+            <div class="card">
+                <img src="img/mahasiswa4.jpg" alt="Mahasiswa 4">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456792</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 4 April</p>
+                    <p><a href="https://instagram.com/lisaamalia" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 5 -->
+            <div class="card">
+                <img src="img/mahasiswa5.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456793</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 5 Mei</p>
+                    <p><a href="https://instagram.com/fajarpratama" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 6 -->
+            <div class="card">
+                <img src="img/mahasiswa6.jpg" alt="Mahasiswa 6">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456794</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 6 Juni</p>
+                    <p><a href="https://instagram.com/intanpermata" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Galeri Kelas & Mahasiswa</p>
+    </footer>
+</body>
+</html>
