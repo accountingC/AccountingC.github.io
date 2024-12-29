@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kelas dan Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="#home"><span class="icon"><i class="fa-solid fa-house-user"></i></span> <span
+                        class="title">Home</span></a>
+            </li>
+            <li>
+                <a href="#profile"><span class="icon"><i class="fa-solid fa-user-graduate"></i></span> <span
+                        class="title">Mahasiswa</span></a>
+            </li>
+            <li>
+                <a href="#memories"><span class="icon"><i class="fa-solid fa-camera"></i></span> <span
+                        class="title">Kenangan</span></a>
+            </li>
+            <li>
+                <a href="https://instagram.com/accounting__c24"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+            </li>
+        </ul>
+    </div>
+    <section id="home" class="hero">
+        <svg viewBox="0 0 960 300">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="80%">KELAS C</text>
+            </symbol>
+        
+            <g class = "g-ants">
+                <use xlink:href="#s-text" class="text-copy">K</use>
+                <use xlink:href="#s-text" class="text-copy">E</use>
+                <use xlink:href="#s-text" class="text-copy">L</use>
+                <use xlink:href="#s-text" class="text-copy">A</use>
+                <use xlink:href="#s-text" class="text-copy">S</use>
+            </g>
+        </svg>
+    </section> 
+
+    <div class="move-text">Beban hari ini cuma proses buat laba masa depan. Keep going!</div> <!-- Teks bergerak dari kiri ke kanan -->
+
+    <section id="profile" class="gallery">
+        <h2>Profile Kelas C</h2>
+        <div class="gallery-container">
+            <!-- Kartu Mahasiswa 1 -->
+            <div class="card">
+                <img src="img/hehe.jpg" alt="Mahasiswa 1">
+                <div class="card-content">
+                    <h3>Nabil Ariq</h3>
+                    <p>Tidak butuh kata-kata, hanya butuh bukti nyata</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 1 Januari </p>
+                    <p><a href="https://instagram.com/nabilariq" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 2 -->
+            <div class="card">
+                <img src="img/mahasiswa2.jpg" alt="Mahasiswa 2">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456790</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 2 Februari</p>
+                    <p><a href="https://instagram.com/rinasari" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 3 -->
+            <div class="card">
+                <img src="img/mahasiswa3.jpg" alt="Mahasiswa 3">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456791</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 3 Maret</p>
+                    <p><a href="https://instagram.com/andisetiawan" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 4 -->
+            <div class="card">
+                <img src="img/mahasiswa4.jpg" alt="Mahasiswa 4">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456792</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 4 April</p>
+                    <p><a href="https://instagram.com/lisaamalia" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 5 -->
+            <div class="card">
+                <img src="img/mahasiswa5.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456793</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 5 Mei</p>
+                    <p><a href="https://instagram.com/fajarpratama" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <!-- Kartu Mahasiswa 6 -->
+            <div class="card">
+                <img src="img/mahasiswa6.jpg" alt="Mahasiswa 6">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456794</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 6 Juni</p>
+                    <p><a href="https://instagram.com/intanpermata" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="memories" class="gallery">
+        <h2>Kenangan Kelas C</h2>
+        <div class="gallery-container">
+            <!-- Kartu Kenangan 1 -->
+            <div class="card">
+                <img src="img/pertemuan1.jpg" alt="Kenangan 1">
+                <div class="card-content">
+                    <h3>Kenangan Pertama</h3>
+                    <p>Hari pertama masuk kelas, penuh harapan dan semangat.</p>
+                </div>
+            </div>
+        </div>
+    </section>    
+    <footer>
+        <p>&copy; Kelas C <span id="year"></span></p>
+        <script>
+            const currentYear = new Date().getFullYear();
+            document.getElementById('year').textContent = currentYear;
+        </script>
+    </footer>
+    <script src="ultah.js"></script>
+</body>
+</html>
