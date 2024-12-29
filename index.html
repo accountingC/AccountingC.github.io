@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kelas dan Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #374151;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            background-color: #1d1d1e;
+            padding: 10px 0;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%; /* Pastikan menu mengambil lebar penuh */
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: nowrap; /* Pastikan tidak terbungkus */
+        }
+        .menu ul li {
+            margin: 0 10px; /* Margin antar item */
+        }
+        .menu ul li a {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+            text-decoration: none;
+            height: 70px;
+            width: 70px;
+            position: relative;
+            text-align: center; /* Center text */
+        }
+        .menu ul li a .title {
+            position: absolute;
+            font-size: 16px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: .5s;
+        }
+        .menu ul li a .icon {
+            position: absolute;
+            font-size: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: .5s;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu ul li a:hover .title {
+            transform: translate(-50%, calc(-50% + 10px));
+            opacity: 1;
+        }
+        .menu ul li a:hover .icon {
+            top: 0;
+            background-color: #1d1d1e;
+            color: #fff;
+            outline: 4px #fff solid;
+        }
+        .hero {
+            background-image: url("img/tes.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .gallery {
+            padding: 40px 20px;
+            text-align: center;
+            background-image: url("img/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .gallery h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0. 2);
+            overflow: hidden;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #f5f5f5;
+            box-shadow: 0 30px 50px #dbdbdb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .slide {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .item {
+            min-width: 100%;
+            height: 300px;
+            position: relative;
+            background-position: center;
+            background-size: cover;
+        }
+        .content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .button {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .button button {
+            border: none;
+            background: #1d1d1e;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .button button:hover {
+            background: #FFD700;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #374151;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .menu ul {
+                flex-direction: row; /* Pastikan tetap horizontal */
+                justify-content: space-around; /* Distribusi ruang antar item */
+            }
+            .menu ul li {
+                margin: 0 5px; /* Sesuaikan margin untuk tampilan mobile */
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .gallery h2 {
+                font-size: 2em;
+            }
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="#home"><span class="icon"><i class="fa-solid fa-house-user"></i></span> <span class="title">Home</span></a>
+            </li>
+            <li>
+                <a href="#profile"><span class="icon"><i class="fa-solid fa-user-graduate"></i></span> <span class="title">Mahasiswa</span></a>
+            </li>
+            <li>
+                <a href="#memories"><span class="icon"><i class="fa-solid fa-camera"></i></span> <span class="title">Kenangan</span></a>
+            </li>
+            <li>
+                <a href="login.html"><span class="icon"><i class="fa-solid fa-user"></i></span> <span class="title">Account</span></a>
+            </li>
+            <li>
+                <a href="https://instagram.com/accounting__c24"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span class="title">Instagram</span></a>
+            </li>
+        </ul>
+    </div>
+    <section id="home" class="hero">
+        <svg viewBox="0 0 960 300">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="80%">KELAS C</text>
+            </symbol>
+            <g class=" g-ants">
+                <use xlink:href="#s-text" class="text-copy">K</use>
+                <use xlink:href="#s-text" class="text-copy">E</use>
+                <use xlink:href="#s-text" class="text-copy">L</use>
+                <use xlink:href="#s-text" class="text-copy">A</use>
+                <use xlink:href="#s-text" class="text-copy">S</use>
+            </g>
+        </svg>
+    </section> 
+
+    <section id="profile" class="gallery">
+        <h2>Profile Kelas C</h2>
+        <div class="gallery-container">
+            <div class="card">
+                <img src="img/hehe.jpg" alt="Mahasiswa 1">
+                <div class="card-content">
+                    <h3>Nabil Ariq</h3>
+                    <p>Tidak butuh kata-kata, hanya butuh bukti nyata</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 1 Januari </p>
+                    <p><a href="https://instagram.com/nabilariq" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/mahasiswa2.jpg" alt="Mahasiswa 2">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456790</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 2 Februari</p>
+                    <p><a href="https://instagram.com/rinasari" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/mahasiswa3.jpg" alt="Mahasiswa 3">
+                <div class="card-content">
+                    <h3>gtw</h3>
+                    <p>NPM: 123456791</p>
+                    <p class="birthday">Tanggal Ulang Tahun: 3 Maret</p>
+                    <p><a href="https://instagram.com/andisetiawan" target="_blank">Instagram</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="memories" class="gallery">
+        <h2>Kenangan Kelas C</h2>
+        <div class="container">
+            <div class="slide">
+                <div class="item" style="background-image: url(img/pertemuan1.jpg);">
+                    <div class="content">
+                        <div class="name">Pertemuan Pertama</div>
+                        <div class="des">Disinilah awal perjalanan hidup kita sampai wisuda nanti</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(img/cod.jpg);">
+                    <div class="content">
+                        <div class="name">Mengikuti kegiatan COD</div>
+                        <div class="des">Kelas C mengikuti kegiatan COD</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(img/makrab.jpg);">
+                    <div class="content">
+                        <div class="name">Makrab Kelas C</div>
+                        <div class="des">Agar makin akrab, maka kita makrab</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(img/coding.jpg);">
+                    <div class="content">
+                        <div class="name">Australia</div>
+                        <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(https://i.ibb.co/jTQfmTq/img5.jpg);">
+                    <div class="content">
+                        <div class="name">Netherland</div>
+                        <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(https://i.ibb.co/RNkk6L0/img6.jpg);">
+                    <div class="content">
+                        <div class="name">Ireland</div>
+                        <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+    <script>
+        let next = document.querySelector('.next');
+        let prev = document.querySelector('.prev');
+
+        next.addEventListener('click', function() {
+            let items = document.querySelectorAll('.item');
+            document.querySelector ('.slide').appendChild(items[0]);
+        });
+
+        prev.addEventListener('click', function() {
+            let items = document.querySelectorAll('.item');
+            document.querySelector('.slide').prepend(items[items.length - 1]);
+        });
+    </script>
+    <footer>
+        <p>&copy; Kelas C <span id="year"></span></p>
+        <script>
+            const currentYear = new Date().getFullYear();
+            document.getElementById('year').textContent = currentYear;
+        </script>
+    </footer>
+</body>
+</html>
