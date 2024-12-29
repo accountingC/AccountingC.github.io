@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const birthdays = [
-        { name: "Nabil Ariq", date: "04-12" },
+        { name: "Nabil Ariq", date: "29-12" },
         { name: "Bagus Shaputra", date: "01-02" },
         { name: "gtw", date: "3-3" },
         { name: "gtw", date: "4-4" },
