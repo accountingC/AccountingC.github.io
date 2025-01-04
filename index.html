@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To Class C</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', Arial, sans-serif; /* Fallback font */
+            margin: 0;
+            padding: 0;
+            background-color: #374151;
+        }
+        .menu {
+            display: flex;
+            justify-content: flex-start; /* Menyebar item ke kiri */
+            background-color: #1d1d1e;
+            padding: 10px 0;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow-x: auto; /* Izinkan scroll horizontal */
+            white-space: nowrap; /* Mencegah item terputus */
+            width: 100%; /* Memastikan navbar memanjang penuh */
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu ul li {
+            margin: 0 10px;
+        }
+        .menu ul li a {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            font-size: 16px; /* Ukuran font lebih kecil untuk responsivitas */
+            text-decoration: none;
+            height: 70px;
+            width: 70px;
+            position: relative;
+            text-align: center; /* Center text */
+        }
+        .menu ul li a .title {
+            position: absolute;
+            font-size: 14px; /* Ukuran font lebih kecil untuk responsivitas */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: .5s;
+        }
+        .menu ul li a .icon {
+            position: absolute;
+            font-size: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: .5s;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu ul li a:hover .title {
+            transform: translate(-50%, calc(-50% + 10px));
+            opacity: 1;
+        }
+        .menu ul li a:hover .icon {
+            top: 0;
+            background-color: #1d1d1e;
+            color: #fff;
+            outline: 4px #fff solid;
+        }
+        .drK .music-card{background:#2d2d30;box-shadow:none}.music-card{display:flex;align-items:center;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.1);padding:10px 20px;max-width:450px;margin:20px auto;}.music-cover-container{position:relative;width:60px;height:60px;margin-right:20px}.music-cover{width:100%;height:100%;border-radius:12px;object-fit:cover}.music-info{flex-grow:1;display:flex;flex-direction:column;justify-content:center}.music-info h4{margin:0;font-size:16px}.music-info p{margin:2px 0 0;font-size:14px}.music-actions{display:flex;align-items:center;gap:10px}.download-btn,.play-pause-btn{border:none;border-radius:50%;padding:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-sizing: border-box}.play-pause-btn svg,.download-btn svg{width:24px;height:24px}.play-pause-btn.playing svg{fill:red}
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="#home"><span class="icon"><i class="fa-solid fa-house-user"></i></span> <span class="title">Home</span></a>
+            </li>
+            <li>
+                <a href="#profile"><span class="icon"><i class="fa-solid fa-user-graduate"></i></span> <span class="title">Mahasiswa</span></a>
+            </li>
+            <li>
+                <a href="#memories"><span class="icon"><i class="fa-solid fa-camera"></i></span> <span class="title">Kenangan</span></a>
+            </li>
+            <li>
+                <a href="login.html"><span class="icon"><i class="fa-solid fa-user"></i></span> <span class="title">Account</span></a>
+            </li>
+        </ul>
+    </div>
+    <section id="home" class="hero">
+        <svg viewBox="0 0 960 300">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="80%">KELAS C</text>
+            </symbol>
+            <g class="g-ants">
+                <use xlink:href="#s-text" class="text-copy">K</use>
+                <use xlink:href="#s-text" class="text-copy">E</use>
+                <use xlink:href="#s-text" class="text-copy">L</use>
+                <use xlink:href="#s-text" class="text-copy">A</use>
+                <use xlink:href="#s-text" class="text-copy">S</use>
+            </g>
+        </svg>
+    </section> 
+
+    <section id="profile" class="gallery">
+        <h2>Profile Kelas C</h2>
+        <div class="gallery-container">
+            <div class="card">
+                <img src="profile/nabil.jpg" alt="Mahasiswa 1">
+                <div class="card-content">
+                    <h3>Nabil Ariq</h3>
+                    <p>Menyukai laut bukan berarti harus menyelam ke dasarnya, cukup duduk dan nikmati</p>
+                    <a href="https://instagram.com/kurangtaukids"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                    <p><strong>Author:</strong> Nabil Ariq</p>
+                    <div class="music-card" id="music-card-1">
+                        <div class="music-cover-container">
+                            <img src="music/rumahsinggah.jpg" alt="Vinee heights" class="music-cover" />
+                        </div>
+                        <div class="music-info">
+                            <h4>Rumah Singgah</h4>
+                            <p>Fabio Asher</p>
+                        </div>
+                        <div class="music-actions">
+                            <button class="play-pause-btn" id="play-pause-btn-1">
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.8661.862 2.696.975 4.088-.246.386-.58.712-.975.952z'/></path></svg>
+                            </button>
+                            <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/rumahs singgah.mp3" download>
+                                <button class="download-btn" id="download-btn-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                        <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                    </path></svg>
+                                </button>
+                            </a>
+                        </div>
+                        <audio id="audio-player-1" src="https://j.top4top.io/m_3289ucqga1.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/tiara.jpg" alt="Mahasiswa 2">
+                <div class="card-content">
+                    <h3>Tiara Rahmah</h3>
+                    <p>Push yourself, nobody else will do it for u</p>
+                    <a href="https://instagram.com/tiararmh_"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                    <p><strong>Creative:</strong> Tiara Rahmah</p>
+                    <div class="music-card" id="music-card-2">
+                        <div class="music-cover-container">
+                            <img src="music/numberone.jpg" alt="Vinee heights" class="music-cover" />
+                        </div>
+                        <div class="music-info">
+                            <h4>Number One Girl</h4>
+                            <p>Rose</p>
+                        </div>
+                        <div class="music-actions">
+                            <button class="play-pause-btn" id="play-pause-btn-2">
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                            </button>
+                            <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/ROSE - number one girl (official music video).mp3" download>
+                                <button class="download-btn" id="download-btn-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                        <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                    </path></svg>
+                                </button>
+                            </a>
+                        </div>
+                        <audio id="audio-player-2" src="https://a.top4top.io/m_3291o1j3z1.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src ="profile/yourva.jpg" alt="Mahasiswa 3">
+                <div class="card-content">
+                    <h3>Yourva Liandra Andana</h3>
+                    <p>kata kata</p>
+                    <a href="https://instagram.com/ayam_encok"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                    <p><strong>Editor:</strong> Yourva </p>
+                    <div class="music-card" id="music-card-3">
+                        <div class="music-cover-container">
+                            <img src="music/snap.jpg" alt="Vinee heights" class="music-cover" />
+                        </div>
+                        <div class="music-info">
+                            <h4>SNAP</h4>
+                            <p>Rosa Linn</p>
+                        </div>
+                        <div class="music-actions">
+                            <button class="play-pause-btn" id="play-pause-btn-3">
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                            </button>
+                            <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/snap.mp3" download>
+                                <button class="download-btn" id="download-btn-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                        <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                    </path></svg>
+                                </button>
+                            </a>
+                        </div>
+                        <audio id="audio-player-3" src="https://i.top4top.io/m_3289x66f21.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/bagus.jpg" alt="Mahasiswa 4">
+                <div class="card-content">
+                    <h3>Bagus Shaputra</h3>
+                    <p>Speaking to me is a privilege and you do not have privileges</p>
+                    <a href="https://instagram.com/slvatore_b"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                    <div class="music-card" id="music-card-4">
+                        <div class="music-cover-container">
+                            <img src="music/born.jpg" alt="Vinee heights" class="music-cover" />
+                        </div>
+                        <div class="music-info">
+                            <h4>Born To Die</h4>
+                            <p>Lana Del Rey</p>
+                        </div>
+                        <div class="music-actions">
+                            <button class="play-pause-btn" id="play-pause-btn-4">
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                            </button>
+                            <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Born To Die.mp3" download>
+                                <button class="download-btn" id="download-btn-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                        <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                    </path></svg>
+                                </button>
+                            </a>
+                        </div>
+                        <audio id="audio-player-4" src="https://c.top4top.io/m_3291opbst3.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/nesha.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Nesha Agustin</h3>
+                    <p>Terkadang untuk melihat suasana yang indah, kita harus melewati jalur yang tidak mudah</p>
+                    <a href="https://instagram.com/nshhsa_"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="img/about.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>About You</h4>
+                                <p>The 1975</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-5">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/about.mp3" download>
+                                    <button class="download-btn" id="download-btn-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-5" src="https://d.top4top.io/m_3291a70e32.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/raihan.jpg" alt="Mahasiswa 6">
+                <div class="card-content">
+                    <h3>Raihan Fadhilah Faqih</h3>
+                    <p>Berpikir sebelum bertindak adalah cara terbaik agar kita tidak bodoh di mata seluruh dunia</p>
+                    <a href="https://instagram.com/raihanfdhlah"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-2">
+                            <div class="music-cover-container">
+                                <img src="music/wanna.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>I Wanna Be Yours</h4>
+                                <p>Artic Monkey</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-6">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/I Wanna Be Yours.mp3" download>
+                                    <button class="download-btn" id="download-btn-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-6" src="https://a.top4top.io/m_32915r57j1.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/zora.jpg" alt="Mahasiswa 6">
+                <div class="card-content">
+                    <h3>Nanda Zora Risqya</h3>
+                    <p>Kepadamu, 2000 tahun mulai sekarang
+                        Darimu, 2000 tahun yang lalu</p>
+                    <a href="https://instagram.com/nanda_zorarizqya"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/virgoun.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Surat Cinta Untuk Starla</h4>
+                                <p>Virgoun</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-7">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/virgoun.mp3" download>
+                                    <button class="download-btn" id="download-btn-7">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-7" src="lagu2/virgoun.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/nadila.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Nadila</h3>
+                    <p>Selalu butuh waktu yang lama untuk mendapatkan sesuatu yang indah</p>
+                    <a href="https://instagram.com/n.nadillaa"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/18.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>18</h4>
+                                <p>One Direction</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-8">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/18.mp3" download>
+                                    <button class="download-btn" id="download-btn-8">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-8" src="https://b.top4top.io/m_3291lfkpx2.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/fitri.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Fitri Juniarti</h3>
+                    <p>Jangan biarkan Masalah menghentikanmu,tapi biarkan masalah itu membuatmu lebih kuat</p>
+                    <a href="https://instagram.com/fitrii_junniarti26"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/asher.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Tanpa Rasa Bersalah</h4>
+                                <p>Fabio Asher</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-9">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/tanpa rasa bersalah.mp3" download>
+                                    <button class="download-btn" id="download-btn-9">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-9" src="https://c.top4top.io/m_32919oxdy3.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/intan.jpg" alt="Mahasiswa 6">
+                <div class="card-content">
+                    <h3>Intan Rahmah Permata Sari</h3>
+                    <p>Amarah adalah bagian dari dirimu yang meminta perhatikan dengarkan,tapi jangan biarkan dia memimpin</p>
+                    <a href="https://instagram.com/inrahhhps"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/nidji.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Rahasia Hati</h4>
+                                <p>Nidji</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-10">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/rahasia hati.mp3" download>
+                                    <button class="download-btn" id="download-btn-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-10" src="https://d.top4top.io/m_32913auxn4.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/arip.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>M. Arif Pratama</h3>
+                    <p>All hustle, little bit luck</p>
+                    <a href="https://instagram.com/aaarifp_"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/reven.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Pulang</h4>
+                                <p>For Revenge</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-11">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/pulang.mp3" download>
+                                    <button class="download-btn" id="download-btn-11">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-11" src="https://e.top4top.io/m_3291ifghd5.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/wira.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Wira Shaputra</h3>
+                    <p>There is nothing impossible to him who will try</p>
+                    <a href="https://instagram.com/fa.sty15"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/blue.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Blue</h4>
+                                <p>Yung Kai</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-12">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/blue.mp3" download>
+                                    <button class="download-btn" id="download-btn-12">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-12" src="https://f.top4top.io/m_3291iqbks6.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/maulana.jpg" alt="Mahasiswa 6">
+                <div class="card-content">
+                    <h3>Maulana Rosyid Hidayat</h3>
+                    <p>Tiada kata selain semangat</p>
+                    <a href="https://instagram.com/maulanaarasyiid"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/sadrah.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Sadrah</h4>
+                                <p>For Revenge</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-13">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/sadrah.mp3" download>
+                                    <button class="download-btn" id="download-btn-13">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-13" src="https://h.top4top.io/m_3291kw9w98.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/mona.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Mona Putri Sitanggang</h3>
+                    <p>Doa tanpa usaha itu bohong
+                        dan usaha tanpa doa itu sombong</p>
+                    <a href="https://instagram.com/monasitanggang"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/ramai.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Ramai Sepi Bersama</h4>
+                                <p>Hindia</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-14">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Hindia - Ramai Sepi Bersama (Official Lyric Video).mp3" download>
+                                    <button class="download-btn" id="download-btn-14">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-14" src="https://e.top4top.io/m_3291h7w9u1.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/dinda.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Dinda Zhakira</h3>
+                    <p>Yang kita ketahui adalah setetes, yang tidak kita tahu adalah samudra.</p>
+                    <a href="https://instagram.com/dindazhakira"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/the.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Thats So True</h4>
+                                <p>Gracie Abrams</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-15">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/thats so true.mp3" download>
+                                    <button class="download-btn" id="download-btn-15">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-15" src="https://f.top4top.io/m_3291e7rq52.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/alya.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Alya Yunita Sari</h3>
+                    <p>Kegagalan bukan akhir dari segalanya, melainkan peluang untuk belajar dan tumbuh. Setiap kesalahan adalah batu loncatan menuju kesuksesan</p>
+                    <a href="https://instagram.com/alyyntsr_"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/nadin.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Bertaut</h4>
+                                <p>Nadin Amiza</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-16">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/bertaut.mp3" download>
+                                    <button class="download-btn" id="download-btn-16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-16" src="https://g.top4top.io/m_3291nw2rw3.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/trisya.jpg" alt="Mahasiswa 2">
+                <div class="card-content">
+                    <h3>Trisya Wulandari</h3>
+                    <p>Langkah kecil hari ini, hasil besar di masa depan.</p>
+                    <a href="https://instagram.com/trissya.__"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/terimakasih.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Terima Kasih</h4>
+                                <p>Hal</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-17">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/terimakasih.mp3" download>
+                                    <button class="download-btn" id="download-btn-17">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-17" src="https://h.top4top.io/m_3291e7ga44.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/dhea.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Dhea Novetri</h3>
+                    <p>Hiduplah dengan sepenuh hati dan kesederhanaan karena kebahagiaan bukanlah sesuatu yang sudah jadi tetapi itu berasal dari tindakan anda sendiri</p>
+                    <a href="https://instagram.com/dhea_novetri"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/reven.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Besok Mungkin Kita Sampai</h4>
+                                <p>Hindia</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-18">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/besok mungkin kita sampai.mp3" download>
+                                    <button class="download-btn" id="download-btn-18">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-18" src="https://i.top4top.io/m_3291pybvn5.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/gacel.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Gacella Putri Ragellia</h3>
+                    <p>https://www.instagram.com/xtkdnaa_</p>
+                    <a href="https://instagram.com/gcllaptriir"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/bunga.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Bunga Maaf</h4>
+                                <p>The Lantis</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-19">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/bunga maaf.mp3" download>
+                                    <button class="download-btn" id="download-btn-19">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-19" src="https://j.top4top.io/m_3291w662k6.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/ningrum.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Ningrum Nurhayati</h3>
+                    <p>Jadikan setiap momen tahun ini sebagai pelajaran untuk menghadapi tahun depan dengan lebih bijak</p>
+                    <a href="https://instagram.com/ningrumnrhyti2411"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/the.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Masing-Masing</h4>
+                                <p>Ade Govinda, Ernie Zakri</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-20">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Ernie Zakri, Ade Govinda - Masing Masing (Official Lyric Video).mp3" download>
+                                    <button class="download-btn" id="download-btn-20">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-20" src="https://k.top4top.io/m_3291z4mfv7.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/reva.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Reva Auliyah</h3>
+                    <p>Loving yourself is giving yourself what you want someone else to</p>
+                    <a href="https://instagram.com/revaauliyah_"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/my.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>My Everything</h4>
+                                <p>Ariana Grande</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-21">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/my everything.mp3" download>
+                                    <button class="download-btn" id="download-btn-21">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-21" src="https://l.top4top.io/m_3291lndox8.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/febby.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Febby Mutiara Putri</h3>
+                    <p>Kalem, semua mimpi punya timing masing-masing.</p>
+                    <a href="https://instagram.com/f3bbymutiara"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/oasis.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Wonderwall</h4>
+                                <p>Oasis</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-22">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Oasis - Wonderwall (Lyrics).mp3" download>
+                                    <button class="download-btn" id="download-btn-22">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-22" src="https://a.top4top.io/m_3291l53jq9.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/revi.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Revi Auliyah</h3>
+                    <p>Tindakan adalah kunci dasar untuk semua kesuksesan</p>
+                    <a href="https://instagram.com/reviauliyah_"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/on.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>On Bended Knee</h4>
+                                <p>Boyz II Men</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-23">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/on bended knee.mp3" download>
+                                    <button class="download-btn" id="download-btn-23">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-23" src="https://b.top4top.io/m_3291vsxrf10.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/livi.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Livi Novika Sari</h3>
+                    <p>Jangan menunggu kesempatan,buat kesempatanmu sendiri</p>
+                    <a href="https://instagram.com/livinovika8"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                </div>
+                <div class="music-card" id="music-card-1">
+                    <div class="music-cover-container">
+                        <img src="music/soulmate.jpg" alt="Vinee heights" class="music-cover" />
+                    </div>
+                    <div class="music-info">
+                        <h4>Soulmate</h4>
+                        <p>Kahitna</p>
+                    </div>
+                    <div class="music-actions">
+                        <button class="play-pause-btn" id="play-pause-btn-24">
+                            <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                        </button>
+                        <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/soulmate.mp3" download>
+                            <button class="download-btn" id="download-btn-24">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                    <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                </path></svg>
+                            </button>
+                        </a>
+                    </div>
+                    <audio id="audio-player-24" src="https://g.top4top.io/m_3291tquhl1.mp3"></audio>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/padil.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Muhammad Fadhil Ichsan</h3>
+                    <p>Study now be proud later</p>
+                    <a href="https://instagram.com/mhdd__fdhll"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/cartel.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Cartel</h4>
+                                <p>Whisnu Santika</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-25">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/cartel.mp3" download>
+                                    <button class="download-btn" id="download-btn-25">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-25" src="https://h.top4top.io/m_3291jgcia2.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/ocha.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Ocha Fitri Mariza</h3>
+                    <p>Kesalahan di masa lalu adalah kesempatan untuk belajar dan tumbuh menjadi pribadi yang lebih baik.</p>
+                    <a href="https://instagram.com/ochafitrimariza"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/adera.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Catatan Kecil</h4>
+                                <p>Adera</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-26">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Catatan Kecil - Adera (Lyric Video).mp3" download>
+                                    <button class="download-btn" id="download-btn-27">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-26" src="https://i.top4top.io/m_3291cti973.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="profile/nadi.jpg" alt="Mahasiswa 5">
+                <div class="card-content">
+                    <h3>Nadi Irawan</h3>
+                    <p>Tuhan tidak akan memberikan cobaan kepada dia yg tidak mampu menjalaninya</p>
+                    <a href="https://instagram.com/nadiirawan_345"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
+                        class="title">Instagram</span></a>
+                        <div class="music-card" id="music-card-1">
+                            <div class="music-cover-container">
+                                <img src="music/laskar.jpg" alt="Vinee heights" class="music-cover" />
+                            </div>
+                            <div class="music-info">
+                                <h4>Laskar Pelangi</h4>
+                                <p>Nidji</p>
+                            </div>
+                            <div class="music-actions">
+                                <button class="play-pause-btn" id="play-pause-btn-27">
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                </button>
+                                <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Laskar Pelangi - Nidji (Lirik).mp3" download>
+                                    <button class="download-btn" id="download-btn-27">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                            <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
+                                        </path></svg>
+                                    </button>
+                                </a>
+                            </div>
+                            <audio id="audio-player-27" src="https://f.top4top.io/m_3291uohyo1.mp3"></audio>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="memories" class="gallery">
+        <h2>Kenangan Kelas C</h2>
+        <div class="container">
+            <div class="slide">
+                <div class="item" style="background-image: url(img/pertemuan1.jpg);">
+                    <div class="content">
+                        <div class="name">Pertama kali foto kelas</div>
+                        <div class="des">Disinilah perjalanan baru akan dimulai</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(img/cod.jpg);">
+                    <div class="content">
+                        <div class="name">Kegiatan COD</div>
+                        <div class="des">Kelas C mengikuti kegiatan COD Himatansi</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(img/makrab.jpg);">
+                    <div class="content">
+                        <div class="name">Makrab Kelas C </div>
+                        <div class="des">Pertama kali nya kelas C makrab</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(img/coding.jpg);">
+                    <div class="content">
+                        <div class="name">Tubes Coding</div>
+                        <div class="des">Telah menyelesaikan Tubes Coding</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(https://i.ibb.co/jTQfmTq/img5.jpg);">
+                    <div class="content">
+                        <div class="name">GATAU</div>
+                        <div class="des">BELUM ISI</div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(https://i.ibb.co/RNkk6L0/img6.jpg);">
+                    <div class="content">
+                        <div class="name">GATAU</div>
+                        <div class="des">BELUM ISI</div>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+    <script>
+    let currentPlaying = null; // Track currently playing audio
+    let currentBtn = null; // Track currently playing button
+    
+    function setupAudioPlayer(playerId, btnId) {
+        const audioPlayer = document.getElementById(playerId);
+        const playPauseBtn = document.getElementById(btnId);
+    
+        playPauseBtn.addEventListener('click', function() {
+            const isPlaying = playPauseBtn.classList.contains('playing');
+    
+            if (isPlaying) {
+                audioPlayer.pause();
+                playPauseBtn.classList.remove('playing');
+                playPauseBtn.innerHTML = `
+                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/></svg>`;
+                currentPlaying = null;
+                currentBtn = null;
+            } else {
+                // Pause the currently playing audio and update its button
+                if (currentPlaying && currentPlaying !== audioPlayer) {
+                    currentPlaying.pause();
+                    if (currentBtn) {
+                        currentBtn.classList.remove('playing');
+                        currentBtn.innerHTML = `
+                            <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,00,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/></svg>`;
+                    }
+                }
+
+                // Play the new audio and update its button
+                audioPlayer.play();
+                playPauseBtn.classList.add('playing');
+                playPauseBtn.innerHTML = `
+                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.5,4 C6.67157288,4 6,4.67157288 6,5.5 L6,18.5 C6,19.3284271 6.67157288,20 7.5,20 L8.5,20 C9.32842712,20 10,19.3284271 10,18.5 L10,5.5 C10,4.67157288 9.32842712,4 8.5,4 L7.5,4 Z M7.5,3 L8.5,3 C9.88071187,3 11,4.11928813 11,5.5 L11,18.5 C11,19.8807119 9.88071187,21 8.5,21 L7.5,21 C6.11928813,21 5,19.8807119 5,18.5 L5,5.5 C5,4.11928813 6.11928813,3 7.5,3 Z M15.5,3 L16.5,3 C17.8807119,3 19,4.11928813 19,5.5 L19,18.5 C19,19.8807119 17.8807119,21 16.5,21 L15.5,21 C14.1192881,21 13,19.8807119 13,18.5 L13,5.5 C13,4.11928813 14.1192881,3 15.5,3 Z M15.5,4 C14.6715729,4 14,4.67157288 14,5.5 L14,18.5 C14,19.3284271 14.6715729,20 15.5,20 L16.5,20 C17.3284271,20 18,19.3284271 18,18.5 L18,5.5 C18,4.67157288 17.3284271,4 16.5,4 L15.5,4 Z"/></svg>`;
+
+                // Update currentPlaying and currentBtn to the new ones
+                currentPlaying = audioPlayer;
+                currentBtn = playPauseBtn;
+            }
+        });
+    }
+
+    // Inisialisasi pemutar audio untuk setiap card
+    setupAudioPlayer('audio-player-1', 'play-pause-btn-1');
+    setupAudioPlayer('audio-player-2', 'play-pause-btn-2');
+    setupAudioPlayer('audio-player-3', 'play-pause-btn-3');
+    setupAudioPlayer('audio-player-4', 'play-pause-btn-4');
+    setupAudioPlayer('audio-player-5', 'play-pause-btn-5');
+    setupAudioPlayer('audio-player-6', 'play-pause-btn-6');
+    setupAudioPlayer('audio-player-7', 'play-pause-btn-7');
+    setupAudioPlayer('audio-player-8', 'play-pause-btn-8');
+    setupAudioPlayer('audio-player-9', 'play-pause-btn-9');
+    setupAudioPlayer('audio-player-10', 'play-pause-btn-10');
+    setupAudioPlayer('audio-player-11', 'play-pause-btn-11');
+    setupAudioPlayer('audio-player-12', 'play-pause-btn-12');
+    setupAudioPlayer('audio-player-13', 'play-pause-btn-13');
+    setupAudioPlayer('audio-player-14', 'play-pause-btn-14');
+    setupAudioPlayer('audio-player-15', 'play-pause-btn-15');
+    setupAudioPlayer('audio-player-16', 'play-pause-btn-16');
+    setupAudioPlayer('audio-player-17', 'play-pause-btn-17');
+    setupAudioPlayer('audio-player-18', 'play-pause-btn-18');
+    setupAudioPlayer('audio-player-19', 'play-pause-btn-19');
+    setupAudioPlayer('audio-player-20', 'play-pause-btn-20');
+    setupAudioPlayer('audio-player-21', 'play-pause-btn-21');
+    setupAudioPlayer('audio-player-22', 'play-pause-btn-22');
+    setupAudioPlayer('audio-player-23', 'play-pause-btn-23');
+    setupAudioPlayer('audio-player-24', 'play-pause-btn-24');
+    setupAudioPlayer('audio-player-25', 'play-pause-btn-25');
+    setupAudioPlayer('audio-player-26', 'play-pause-btn-26');
+    setupAudioPlayer('audio-player-27', 'play-pause-btn-27');
+    // Tambahkan setupAudioPlayer untuk card lainnya sesuai kebutuhan
+
+    </script>
+    <script src="script.js"></script>
+    <script src="ultah.js"></script>
+    <footer>
+        <p>&copy; Kelas C <span id="year"></span></p>
+        <script>
+            const currentYear = new Date().getFullYear();
+            document.getElementById('year').textContent = currentYear;
+        </script>
+    </footer>
+</body>
+</html>
+
