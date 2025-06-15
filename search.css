@@ -1,0 +1,339 @@
+/* search.css */
+
+/* --- Umum untuk Aksesibilitas --- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+/* --- Tombol Hamburger Menu --- */
+.hamburger-menu {
+    display: none; /* Sembunyikan di desktop */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed; /* Posisikan tetap di layar */
+    top: 15px; /* Sesuaikan posisi */
+    left: 15px; /* Sesuaikan posisi */
+    z-index: 1001; /* Di atas menu dan overlay */
+    transition: all 0.3s ease;
+    background-color: #f0f0f0; /* Background agar ikon terlihat jelas */
+    border-radius: 5px;
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #333; /* Warna bar hamburger */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Animasi Hamburger saat aktif */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* --- Overlay Sidebar --- */
+.overlay {
+    display: none; /* Sembunyikan default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Warna overlay semi-transparan */
+    z-index: 999; /* Di bawah menu tapi di atas konten utama */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block; /* Tampilkan saat aktif */
+    opacity: 1;
+}
+
+/* --- Styling Menu Navigasi (Sidebar di Mobile) --- */
+.menu {
+    background-color: #333; /* Warna background menu */
+    padding: 10px 0;
+    position: fixed; /* Ubah ke fixed untuk sidebar */
+    top: 0;
+    left: 0;
+    height: 100%; /* Ambil tinggi penuh layar */
+    width: 250px; /* Lebar sidebar */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease-out; /* Transisi untuk efek slide */
+    /* transform: translateX(-100%); <-- Ini akan diatur oleh JS di awal */
+    display: flex; /* Untuk menata konten sidebar secara vertikal */
+    flex-direction: column;
+    overflow-y: auto; /* Aktifkan scroll jika konten menu terlalu banyak */
+}
+
+/* Kelas yang akan ditambahkan oleh JS untuk menampilkan sidebar */
+.menu.active-sidebar {
+    transform: translateX(0); /* Tampilkan sidebar */
+}
+
+/* --- Default Desktop Styling (Diluar Media Query) --- */
+/* Pastikan menu di desktop selalu terlihat dan horizontal */
+@media (min-width: 769px) {
+    .menu {
+        position: sticky; /* Tetap di atas saat scroll */
+        top: 0;
+        transform: translateX(0) !important; /* Pastikan menu terlihat di desktop, override JS inline style */
+        height: auto; /* Kembali ke tinggi auto */
+        width: 100%; /* Lebar penuh */
+        flex-direction: row; /* Item menu kembali horizontal */
+        justify-content: flex-end; /* Item menu di kanan */
+        padding: 10px 0; /* Padding default desktop */
+        box-shadow: none; /* Hilangkan bayangan sidebar */
+        transition: top 0.3s ease-out; /* Transisi untuk efek hidden/show saat scroll */
+    }
+
+    /* Kelas yang akan ditambahkan oleh JS untuk menyembunyikan menu di desktop saat scroll down */
+    .menu.hidden-menu {
+        top: -60px; /* Sesuaikan dengan tinggi menu agar tersembunyi sepenuhnya */
+    }
+
+    .menu ul {
+        flex-direction: row; /* Pastikan item menu horizontal */
+        padding: 0 20px;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+
+/* Styling umum untuk item menu */
+.menu li {
+    padding: 10px 15px;
+    position: relative;
+    color: #fff;
+    font-size: 1em;
+    white-space: nowrap;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block; /* Agar link memenuhi area li */
+}
+
+.menu li a:hover {
+    color: #007bff;
+}
+
+/* --- Styling Search Bar --- */
+
+/* Item menu khusus untuk search bar */
+.menu li.search-menu-item {
+    padding: 0;
+    margin-left: auto; /* Dorong search item ke paling kanan di desktop */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Posisikan ikon search di kanan */
+    width: auto; /* Lebar otomatis */
+}
+
+/* Wrapper ikon search (kaca pembesar) */
+.search-icon-wrapper {
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    z-index: 20;
+    flex-shrink: 0;
+}
+
+.search-icon-wrapper:hover {
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+/* Wrapper input search dan tombol clear */
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Tetap absolut di desktop */
+    right: 0; /* Posisikan di ujung kanan li.search-menu-item */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: width 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+/* Style saat search bar aktif (ditambah oleh JavaScript) */
+.search-input-wrapper.active {
+    width: 280px; /* Lebar search bar saat muncul di desktop */
+    opacity: 1;
+    padding-left: 15px;
+}
+
+/* Input search field */
+#search-box {
+    flex-grow: 1;
+    padding: 8px 0;
+    border: none;
+    background: transparent;
+    font-size: 1em;
+    outline: none;
+    color: #333;
+    box-sizing: border-box;
+}
+
+#search-box::placeholder {
+    color: #888;
+}
+
+/* Tombol clear (X) */
+.clear-search-btn {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    color: #888;
+    cursor: pointer;
+    padding: 5px 8px;
+    transition: color 0.2s ease;
+    outline: none;
+    flex-shrink: 0;
+}
+
+.clear-search-btn:hover {
+    color: #000;
+}
+
+
+/* --- Media Queries untuk Responsivitas Handphone --- */
+
+/* Untuk layar yang lebih kecil dari atau sama dengan 768px */
+@media (max-width: 768px) {
+    /* Tampilkan Hamburger Menu di mobile */
+    .hamburger-menu {
+        display: flex; /* Aktifkan tampilan hamburger */
+    }
+
+    /* Sembunyikan menu di posisi awal mobile */
+    .menu {
+        /* transform: translateX(-100%); <-- Dihapus karena diatur oleh JS di awal */
+        padding-top: 60px; /* Beri ruang untuk tombol close atau judul di sidebar jika ada */
+    }
+
+    .menu.active-sidebar {
+        transform: translateX(0); /* Tampilkan sidebar */
+    }
+
+    .menu ul {
+        flex-direction: column; /* Tumpuk item menu secara vertikal */
+        align-items: flex-start; /* Sejajarkan ke kiri di sidebar */
+        padding: 20px; /* Padding di dalam sidebar */
+        width: 100%; /* Lebar ul mengisi sidebar */
+    }
+
+    .menu li {
+        width: 100%; /* Setiap item menu mengambil lebar penuh sidebar */
+        text-align: left; /* Teks item menu sejajar kiri */
+        padding: 12px 0; /* Padding vertikal yang lebih besar di sidebar */
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* Garis pemisah antar item */
+    }
+    .menu li:last-child {
+        border-bottom: none;
+    }
+
+    /* Posisikan item search di bagian atas menu di mobile */
+    .menu li.search-menu-item {
+        order: -1; /* Memindahkan item search ke urutan paling awal di sidebar */
+        margin-bottom: 20px; /* Jarak antara search bar dan item menu lainnya */
+        justify-content: flex-start; /* Ikon search di awal baris */
+        width: 100%; /* Lebar penuh */
+        padding: 0; /* Hapus padding agar search bar bisa responsif */
+    }
+
+    /* Ikon search di mobile (di dalam sidebar) */
+    .search-icon-wrapper {
+        margin-right: 10px; /* Jarak dari input */
+        font-size: 1.8em; /* Ukuran ikon lebih besar di mobile */
+        padding: 8px;
+        width: 35px;
+        height: 35px;
+        color: #333; /* Ubah warna ikon di mobile agar terlihat di background putih input */
+        background-color: transparent; /* Hilangkan background ikon agar menyatu dengan input */
+        /* Anda bisa menambahkan background #f0f0f0 di .search-input-wrapper jika ingin ikon punya background */
+    }
+
+    /* Wrapper input search dan tombol clear di mobile (di dalam sidebar) */
+    .search-input-wrapper {
+        position: static; /* Ubah posisi dari absolut menjadi statis */
+        transform: none; /* Hapus transformasi */
+        width: calc(100% - 45px); /* Ambil lebar sisa (sidebar_width - icon_width - margins) */
+        opacity: 0; /* Tetap tersembunyi awal */
+        transition: width 0.3s ease-out, opacity 0.3s ease-out;
+        box-shadow: none; /* Hilangkan bayangan dalam sidebar */
+        margin-left: 0; /* Hilangkan margin-left */
+        padding-left: 0; /* Hilangkan padding-left saat aktif */
+        background-color: #f9f9f9; /* Background putih untuk input di sidebar */
+        border: 1px solid #ddd; /* Tambahkan border tipis */
+    }
+
+    /* Style saat search bar aktif di mobile (di dalam sidebar) */
+    .search-input-wrapper.active {
+        width: calc(100% - 45px); /* Lebar penuh di sidebar saat aktif */
+        opacity: 1;
+        padding-left: 10px; /* Padding saat aktif */
+    }
+
+    #search-box {
+        font-size: 1.1em;
+        padding: 8px 0;
+        color: #333;
+    }
+
+    .clear-search-btn {
+        font-size: 1.3em;
+        padding: 8px 10px;
+        color: #333; /* Sesuaikan warna tombol X */
+    }
+
+    /* Penyesuaian untuk tampilan galeri di mobile agar tidak terlalu lebar */
+    .gallery-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-container .card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
