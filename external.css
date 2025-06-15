@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat', Arial, sans-serif; /* Fallback font */
+    margin: 0;
+    padding: 0;
+    background-color: #374151;
+}
+.menu {
+    display: flex;
+    justify-content: flex-start; /* Menyebar item ke kiri */
+    background-color: #1d1d1e;
+    padding: 10px 0;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-x: auto; /* Izinkan scroll horizontal */
+    white-space: nowrap; /* Mencegah item terputus */
+    width: 100%; /* Memastikan navbar memanjang penuh */
+}
+.menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu ul li {
+    margin: 0 10px;
+}
+.menu ul li a {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px; /* Ukuran font lebih kecil untuk responsivitas */
+    text-decoration: none;
+    height: 70px;
+    width: 70px;
+    position: relative;
+    text-align: center; /* Center text */
+}
+.menu ul li a .title {
+    position: absolute;
+    font-size: 14px; /* Ukuran font lebih kecil untuk responsivitas */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: .5s;
+}
+.menu ul li a .icon {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu ul li a:hover .title {
+    transform: translate(-50%, calc(-50% + 10px));
+    opacity: 1;
+}
+.menu ul li a:hover .icon {
+    top: 0;
+    background-color: #1d1d1e;
+    color: #fff;
+    outline: 4px #fff solid;
+}
+
+.drK .music-card{background:#2d2d30;box-shadow:none}.music-card{display:flex;align-items:center;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.1);padding:10px 20px;max-width:450px;margin:20px auto;}.music-cover-container{position:relative;width:60px;height:60px;margin-right:20px}.music-cover{width:100%;height:100%;border-radius:12px;object-fit:cover}.music-info{flex-grow:1;display:flex;flex-direction:column;justify-content:center}.music-info h4{margin:0;font-size:16px}.music-info p{margin:2px 0 0;font-size:14px}.music-actions{display:flex;align-items:center;gap:10px}.download-btn,.play-pause-btn{border:none;border-radius:50%;padding:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-sizing: border-box}.play-pause-btn svg,.download-btn svg{width:24px;height:24px}.play-pause-btn.playing svg{fill:red}
