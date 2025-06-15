@@ -5,87 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome To Class C</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Montserrat', Arial, sans-serif; /* Fallback font */
-            margin: 0;
-            padding: 0;
-            background-color: #374151;
-        }
-        .menu {
-            display: flex;
-            justify-content: flex-start; /* Menyebar item ke kiri */
-            background-color: #1d1d1e;
-            padding: 10px 0;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            overflow-x: auto; /* Izinkan scroll horizontal */
-            white-space: nowrap; /* Mencegah item terputus */
-            width: 100%; /* Memastikan navbar memanjang penuh */
-        }
-        .menu ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .menu ul li {
-            margin: 0 10px;
-        }
-        .menu ul li a {
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            font-size: 16px; /* Ukuran font lebih kecil untuk responsivitas */
-            text-decoration: none;
-            height: 70px;
-            width: 70px;
-            position: relative;
-            text-align: center; /* Center text */
-        }
-        .menu ul li a .title {
-            position: absolute;
-            font-size: 14px; /* Ukuran font lebih kecil untuk responsivitas */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: .5s;
-        }
-        .menu ul li a .icon {
-            position: absolute;
-            font-size: 20px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: .5s;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .menu ul li a:hover .title {
-            transform: translate(-50%, calc(-50% + 10px));
-            opacity: 1;
-        }
-        .menu ul li a:hover .icon {
-            top: 0;
-            background-color: #1d1d1e;
-            color: #fff;
-            outline: 4px #fff solid;
-        }
-        .drK .music-card{background:#2d2d30;box-shadow:none}.music-card{display:flex;align-items:center;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.1);padding:10px 20px;max-width:450px;margin:20px auto;}.music-cover-container{position:relative;width:60px;height:60px;margin-right:20px}.music-cover{width:100%;height:100%;border-radius:12px;object-fit:cover}.music-info{flex-grow:1;display:flex;flex-direction:column;justify-content:center}.music-info h4{margin:0;font-size:16px}.music-info p{margin:2px 0 0;font-size:14px}.music-actions{display:flex;align-items:center;gap:10px}.download-btn,.play-pause-btn{border:none;border-radius:50%;padding:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-sizing: border-box}.play-pause-btn svg,.download-btn svg{width:24px;height:24px}.play-pause-btn.playing svg{fill:red}
-    </style>
+    <link rel="stylesheet" href="external.css">
+    <link rel="stylesheet" href="name.css">
+    <link rel="stylesheet" href="search.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="menu">
-        <ul>
+
+    <div class="hamburger-menu" id="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div class="overlay" id="sidebar-overlay"></div>
+
+    <div class="menu" id="main-menu"> <ul>
             <li>
                 <a href="#home"><span class="icon"><i class="fa-solid fa-house-user"></i></span> <span class="title">Home</span></a>
             </li>
@@ -98,8 +32,19 @@
             <li>
                 <a href="login.html"><span class="icon"><i class="fa-solid fa-user"></i></span> <span class="title">Account</span></a>
             </li>
+
+            <li class="search-menu-item">
+                <div class="search-icon-wrapper" id="search-icon-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="search-input-wrapper" id="search-input-wrapper">
+                    <input type="search" id="search-box" name="search" placeholder="Cari nama..." autocomplete="off" spellcheck="false" aria-label="Cari nama" />
+                    <button class="clear-search-btn" id="clear-search-btn" aria-label="Hapus pencarian"><i class="fas fa-times"></i></button>
+                </div>
+            </li>
         </ul>
     </div>
+
     <section id="home" class="hero">
         <svg viewBox="0 0 960 300">
             <symbol id="s-text">
@@ -113,7 +58,7 @@
                 <use xlink:href="#s-text" class="text-copy">S</use>
             </g>
         </svg>
-    </section> 
+    </section>
 
     <section id="profile" class="gallery">
         <h2>Profile Kelas C</h2>
@@ -122,10 +67,13 @@
                 <img src="profile/nabil.jpg" alt="Mahasiswa 1">
                 <div class="card-content">
                     <h3>Nabil Ariq</h3>
-                    <p>Menyukai laut bukan berarti harus menyelam ke dasarnya, cukup duduk dan nikmati</p>
+                    <p>Selalu menggunakan logika daripada perasaan </p>
                     <a href="https://instagram.com/kurangtaukids"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
                         class="title">Instagram</span></a>
-                    <p><strong>Author:</strong> Nabil Ariq</p>
+                        <p>
+                            <strong style="color: #f723ed; font-weight: bold;">Author:</strong>
+                            <strong style="color: #f723ed; font-weight: bold;">Nabil Ariq</strong>
+                        </p>
                     <div class="music-card" id="music-card-1">
                         <div class="music-cover-container">
                             <img src="music/rumahsinggah.jpg" alt="Vinee heights" class="music-cover" />
@@ -136,7 +84,7 @@
                         </div>
                         <div class="music-actions">
                             <button class="play-pause-btn" id="play-pause-btn-1">
-                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.8661.862 2.696.975 4.088-.246.386-.58.712-.975.952z'/></path></svg>
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.8661.862 2.696.975 4.088-.246.386-.58.712-.975.952z'/></path></svg>
                             </button>
                             <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/rumahs singgah.mp3" download>
                                 <button class="download-btn" id="download-btn-1">
@@ -168,7 +116,7 @@
                         </div>
                         <div class="music-actions">
                             <button class="play-pause-btn" id="play-pause-btn-2">
-                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                             </button>
                             <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/ROSE - number one girl (official music video).mp3" download>
                                 <button class="download-btn" id="download-btn-2">
@@ -200,7 +148,7 @@
                         </div>
                         <div class="music-actions">
                             <button class="play-pause-btn" id="play-pause-btn-3">
-                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                             </button>
                             <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/snap.mp3" download>
                                 <button class="download-btn" id="download-btn-3">
@@ -231,7 +179,7 @@
                         </div>
                         <div class="music-actions">
                             <button class="play-pause-btn" id="play-pause-btn-4">
-                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                             </button>
                             <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Born To Die.mp3" download>
                                 <button class="download-btn" id="download-btn-4">
@@ -262,7 +210,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-5">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/about.mp3" download>
                                     <button class="download-btn" id="download-btn-5">
@@ -293,7 +241,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-6">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/I Wanna Be Yours.mp3" download>
                                     <button class="download-btn" id="download-btn-6">
@@ -325,7 +273,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-7">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/virgoun.mp3" download>
                                     <button class="download-btn" id="download-btn-7">
@@ -356,7 +304,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-8">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/18.mp3" download>
                                     <button class="download-btn" id="download-btn-8">
@@ -374,7 +322,7 @@
                 <img src="profile/fitri.jpg" alt="Mahasiswa 5">
                 <div class="card-content">
                     <h3>Fitri Juniarti</h3>
-                    <p>Jangan biarkan Masalah menghentikanmu,tapi biarkan masalah itu membuatmu lebih kuat</p>
+                    <p>Jangan biarkan Masalah menghentikanmu,tapi biarkan masalah itu membuatmu lebih kuat</p>
                     <a href="https://instagram.com/fitrii_junniarti26"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
                         class="title">Instagram</span></a>
                         <div class="music-card" id="music-card-1">
@@ -387,7 +335,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-9">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/tanpa rasa bersalah.mp3" download>
                                     <button class="download-btn" id="download-btn-9">
@@ -418,7 +366,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-10">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/rahasia hati.mp3" download>
                                     <button class="download-btn" id="download-btn-10">
@@ -449,7 +397,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-11">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/pulang.mp3" download>
                                     <button class="download-btn" id="download-btn-11">
@@ -480,7 +428,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-12">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/blue.mp3" download>
                                     <button class="download-btn" id="download-btn-12">
@@ -511,7 +459,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-13">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/sadrah.mp3" download>
                                     <button class="download-btn" id="download-btn-13">
@@ -543,7 +491,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-14">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Hindia - Ramai Sepi Bersama (Official Lyric Video).mp3" download>
                                     <button class="download-btn" id="download-btn-14">
@@ -574,7 +522,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-15">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/thats so true.mp3" download>
                                     <button class="download-btn" id="download-btn-15">
@@ -605,7 +553,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-16">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/bertaut.mp3" download>
                                     <button class="download-btn" id="download-btn-16">
@@ -636,7 +584,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-17">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/terimakasih.mp3" download>
                                     <button class="download-btn" id="download-btn-17">
@@ -667,7 +615,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-18">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/besok mungkin kita sampai.mp3" download>
                                     <button class="download-btn" id="download-btn-18">
@@ -698,7 +646,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-19">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/bunga maaf.mp3" download>
                                     <button class="download-btn" id="download-btn-19">
@@ -729,7 +677,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-20">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Ernie Zakri, Ade Govinda - Masing Masing (Official Lyric Video).mp3" download>
                                     <button class="download-btn" id="download-btn-20">
@@ -760,7 +708,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-21">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/my everything.mp3" download>
                                     <button class="download-btn" id="download-btn-21">
@@ -791,7 +739,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-22">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Oasis - Wonderwall (Lyrics).mp3" download>
                                     <button class="download-btn" id="download-btn-22">
@@ -822,7 +770,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-23">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/on bended knee.mp3" download>
                                     <button class="download-btn" id="download-btn-23">
@@ -854,7 +802,7 @@
                     </div>
                     <div class="music-actions">
                         <button class="play-pause-btn" id="play-pause-btn-24">
-                            <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                            <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                         </button>
                         <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/soulmate.mp3" download>
                             <button class="download-btn" id="download-btn-24">
@@ -884,7 +832,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-25">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/cartel.mp3" download>
                                     <button class="download-btn" id="download-btn-25">
@@ -915,7 +863,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-26">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Catatan Kecil - Adera (Lyric Video).mp3" download>
                                     <button class="download-btn" id="download-btn-27">
@@ -933,7 +881,7 @@
                 <img src="profile/nadi.jpg" alt="Mahasiswa 5">
                 <div class="card-content">
                     <h3>Nadi Irawan</h3>
-                    <p>Tuhan tidak akan memberikan cobaan kepada dia yg tidak mampu menjalaninya</p>
+                    <p>Tuhan tidak akan memberikan cobaan kepada dia yg tidak mampu menjalaninya</p>
                     <a href="https://instagram.com/nadiirawan_345"><span class="icon"><i class="fa-brands fa-instagram"></i></span> <span
                         class="title">Instagram</span></a>
                         <div class="music-card" id="music-card-1">
@@ -946,7 +894,7 @@
                             </div>
                             <div class="music-actions">
                                 <button class="play-pause-btn" id="play-pause-btn-27">
-                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606  1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
+                                    <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play"><path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1 .36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' /></path></svg>
                                 </button>
                                 <a href="https://raw.githubusercontent.com/brokentod/kurangtaukids/main/Laskar Pelangi - Nidji (Lirik).mp3" download>
                                     <button class="download-btn" id="download-btn-27">
@@ -969,25 +917,25 @@
                 <div class="item" style="background-image: url(img/pertemuan1.jpg);">
                     <div class="content">
                         <div class="name">Pertama kali foto kelas</div>
-                        <div class="des">Disinilah perjalanan baru akan dimulai</div>
+                        <div class="des">Di sinilah perjalanan baru kita dimulai!</div>
                     </div>
                 </div>
                 <div class="item" style="background-image: url(img/cod.jpg);">
                     <div class="content">
-                        <div class="name">Kegiatan COD</div>
-                        <div class="des">Kelas C mengikuti kegiatan COD Himatansi</div>
+                        <div class="name">Kegiatan COD Himatansi</div>
+                        <div class="des">Kelas C berpartisipasi dengan semangat dalam kegiatan COD Himatansi!</div>
                     </div>
                 </div>
                 <div class="item" style="background-image: url(img/makrab.jpg);">
                     <div class="content">
                         <div class="name">Makrab Kelas C </div>
-                        <div class="des">Pertama kali nya kelas C makrab</div>
+                        <div class="des">Memulai Kebersamaan dalam Makrab Pertama!</div>
                     </div>
                 </div>
                 <div class="item" style="background-image: url(img/coding.jpg);">
                     <div class="content">
                         <div class="name">Tubes Coding</div>
-                        <div class="des">Telah menyelesaikan Tubes Coding</div>
+                        <div class="des"> Selesai dan Siap untuk Langkah Selanjutnya!</div>
                     </div>
                 </div>
                 <div class="item" style="background-image: url(https://i.ibb.co/jTQfmTq/img5.jpg);">
@@ -1012,14 +960,14 @@
     <script>
     let currentPlaying = null; // Track currently playing audio
     let currentBtn = null; // Track currently playing button
-    
+
     function setupAudioPlayer(playerId, btnId) {
         const audioPlayer = document.getElementById(playerId);
         const playPauseBtn = document.getElementById(btnId);
-    
+
         playPauseBtn.addEventListener('click', function() {
             const isPlaying = playPauseBtn.classList.contains('playing');
-    
+
             if (isPlaying) {
                 audioPlayer.pause();
                 playPauseBtn.classList.remove('playing');
@@ -1034,7 +982,7 @@
                     if (currentBtn) {
                         currentBtn.classList.remove('playing');
                         currentBtn.innerHTML = `
-                            <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,00,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/></svg>`;
+                            <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/></svg>`;
                     }
                 }
 
@@ -1081,6 +1029,149 @@
     setupAudioPlayer('audio-player-27', 'play-pause-btn-27');
     // Tambahkan setupAudioPlayer untuk card lainnya sesuai kebutuhan
 
+    // --- Kode JavaScript untuk Sidebar dan Search Bar ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchIconWrapper = document.getElementById('search-icon-wrapper');
+        const searchInputWrapper = document.getElementById('search-input-wrapper');
+        const searchBox = document.getElementById('search-box');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+        const galleryContainer = document.querySelector('.gallery-container');
+        const cards = galleryContainer.querySelectorAll('.card');
+        const mainMenu = document.getElementById('main-menu'); // Elemen menu utama
+        const hamburgerMenu = document.getElementById('hamburger-menu'); // Tombol hamburger
+        const sidebarOverlay = document.getElementById('sidebar-overlay'); // Overlay
+
+        let lastScrollY = window.scrollY; // Simpan posisi scroll terakhir
+
+        // Sembunyikan input search bar secara default
+        searchInputWrapper.classList.add('hidden-search-input');
+
+        // Fungsi untuk menutup sidebar (dipanggil oleh overlay dan klik link)
+        function closeSidebar() {
+            mainMenu.classList.remove('active-sidebar');
+            hamburgerMenu.classList.remove('active'); // Reset hamburger icon
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Aktifkan kembali scroll body
+            // Pastikan search bar tertutup saat sidebar ditutup
+            searchInputWrapper.classList.remove('active');
+            searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
+            searchBox.value = ''; // Kosongkan search box
+            cards.forEach(card => { // Tampilkan semua kartu
+                card.style.display = 'block';
+            });
+        }
+
+        // Event listener untuk tombol hamburger
+        hamburgerMenu.addEventListener('click', function() {
+            mainMenu.classList.toggle('active-sidebar');
+            hamburgerMenu.classList.toggle('active'); // Animasi hamburger
+            sidebarOverlay.classList.toggle('active'); // Tampilkan overlay
+            if (mainMenu.classList.contains('active-sidebar')) {
+                document.body.style.overflow = 'hidden'; // Nonaktifkan scroll body
+            } else {
+                document.body.style.overflow = ''; // Aktifkan kembali scroll body
+                // Jika sidebar ditutup, pastikan search bar juga tertutup
+                searchInputWrapper.classList.remove('active');
+                searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
+                searchBox.value = '';
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            }
+        });
+
+        // Event listener untuk overlay
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Event listener untuk setiap link di dalam sidebar (opsional, untuk menutup sidebar setelah klik link)
+        mainMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Hanya tutup sidebar jika lebar layar <= 768px (mobile)
+                if (window.innerWidth <= 768) {
+                    closeSidebar();
+                }
+            });
+        });
+
+        // Search Bar Toggle Logic (tetap sama)
+        searchIconWrapper.addEventListener('click', function() {
+            const searchMenuItem = searchIconWrapper.closest('.search-menu-item');
+            searchMenuItem.classList.toggle('active-search');
+            searchInputWrapper.classList.toggle('active');
+
+            if (searchInputWrapper.classList.contains('active')) {
+                searchBox.focus();
+                // Jika search bar muncul, pastikan menu terlihat
+                mainMenu.classList.remove('hidden-menu');
+            } else {
+                searchBox.value = '';
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            }
+        });
+
+        clearSearchBtn.addEventListener('click', function() {
+            searchBox.value = '';
+            searchBox.focus();
+            cards.forEach(card => {
+                card.style.display = 'block';
+            });
+        });
+
+        searchBox.addEventListener('keyup', function() {
+            const searchTerm = searchBox.value.toLowerCase();
+
+            cards.forEach(card => {
+                const studentNameElement = card.querySelector('h3');
+                if (studentNameElement) {
+                    const studentName = studentNameElement.textContent.toLowerCase();
+
+                    if (studentName.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // Fungsionalitas sembunyikan/tampilkan menu saat scroll (hanya untuk desktop)
+        window.addEventListener('scroll', function() {
+            if (window.innerWidth > 768) { // Hanya aktif di desktop
+                if (!searchInputWrapper.classList.contains('active')) {
+                    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                        mainMenu.classList.add('hidden-menu');
+                    } else {
+                        mainMenu.classList.remove('hidden-menu');
+                    }
+                }
+            } else { // Di mobile, menu akan dihandle oleh sidebar, bukan scroll
+                mainMenu.classList.remove('hidden-menu'); // Pastikan tidak tersembunyi karena scroll di mobile
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // Deteksi perubahan ukuran layar untuk reset sidebar
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                // Pastikan sidebar tertutup dan styling desktop aktif jika resize ke desktop
+                closeSidebar();
+                mainMenu.classList.remove('hidden-menu'); // Pastikan menu muncul di desktop
+            } else {
+                 // Sembunyikan menu jika di mobile dan belum dibuka
+                 if (!mainMenu.classList.contains('active-sidebar')) {
+                    mainMenu.style.transform = 'translateX(-100%)';
+                 }
+            }
+        });
+
+        // Initial check on load
+        if (window.innerWidth <= 768) {
+            mainMenu.style.transform = 'translateX(-100%)'; // Sembunyikan sidebar awal di mobile
+        }
+    });
+    // --- Akhir Kode JavaScript ---
     </script>
     <script src="script.js"></script>
     <script src="ultah.js"></script>
