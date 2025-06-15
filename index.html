@@ -11,15 +11,8 @@
 </head>
 <body>
 
-    <div class="hamburger-menu" id="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-
-    <div class="overlay" id="sidebar-overlay"></div>
-
-    <div class="menu" id="main-menu"> <ul>
+    <div class="menu" id="main-menu">
+        <ul>
             <li>
                 <a href="#home"><span class="icon"><i class="fa-solid fa-house-user"></i></span> <span class="title">Home</span></a>
             </li>
@@ -1029,125 +1022,102 @@
     setupAudioPlayer('audio-player-27', 'play-pause-btn-27');
     // Tambahkan setupAudioPlayer untuk card lainnya sesuai kebutuhan
 
-    // --- Kode JavaScript untuk Sidebar dan Search Bar ---
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchIconWrapper = document.getElementById('search-icon-wrapper');
-        const searchInputWrapper = document.getElementById('search-input-wrapper');
-        const searchBox = document.getElementById('search-box');
-        const clearSearchBtn = document.getElementById('clear-search-btn');
-        const galleryContainer = document.querySelector('.gallery-container');
-        const cards = galleryContainer.querySelectorAll('.card');
-        const mainMenu = document.getElementById('main-menu'); // Elemen menu utama
-        const hamburgerMenu = document.getElementById('hamburger-menu'); // Tombol hamburger
-        const sidebarOverlay = document.getElementById('sidebar-overlay'); // Overlay
+    // --- Kode JavaScript untuk Menu & Search Bar yang Responsif ---
+    // --- Kode JavaScript untuk Menu & Search Bar yang Konsisten ---
+document.addEventListener('DOMContentLoaded', function() {
+    const searchIconWrapper = document.getElementById('search-icon-wrapper');
+    const searchInputWrapper = document.getElementById('search-input-wrapper');
+    const searchBox = document.getElementById('search-box');
+    const clearSearchBtn = document.getElementById('clear-search-btn');
+    const galleryContainer = document.querySelector('.gallery-container');
+    const cards = galleryContainer.querySelectorAll('.card');
+    const mainMenu = document.getElementById('main-menu'); // Elemen menu utama
 
-        let lastScrollY = window.scrollY; // Simpan posisi scroll terakhir
+    let lastScrollY = window.scrollY; // Simpan posisi scroll terakhir
 
-        // Fungsi untuk menutup sidebar (dipanggil oleh overlay dan klik link)
-        function closeSidebar() {
-            mainMenu.classList.remove('active-sidebar');
-            hamburgerMenu.classList.remove('active'); // Reset hamburger icon
-            sidebarOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Aktifkan kembali scroll body
-            // Pastikan search bar tertutup saat sidebar ditutup
-            searchInputWrapper.classList.remove('active');
-            searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
-            searchBox.value = ''; // Kosongkan search box
-            cards.forEach(card => { // Tampilkan semua kartu
-                card.style.display = 'block';
-            });
-        }
+    // Sembunyikan input search bar secara default di semua tampilan
+    searchInputWrapper.classList.add('hidden-search-input'); // Kelas ini tidak lagi diperlukan jika width:0, opacity:0 yang mengontrol. Namun, tidak ada salahnya tetap ada.
 
-        // Fungsi untuk membuka sidebar
-        function openSidebar() {
-            mainMenu.classList.add('active-sidebar');
-            hamburgerMenu.classList.add('active');
-            sidebarOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Nonaktifkan scroll body
-        }
 
-        // Event listener untuk tombol hamburger
-        hamburgerMenu.addEventListener('click', function() {
-            if (mainMenu.classList.contains('active-sidebar')) {
-                closeSidebar();
-            } else {
-                openSidebar();
-            }
-        });
+    // Search Bar Toggle Logic (Unified for all screen sizes)
+    searchIconWrapper.addEventListener('click', function() {
+        const searchMenuItem = searchIconWrapper.closest('.search-menu-item');
+        searchMenuItem.classList.toggle('active-search'); // Aktifkan kelas untuk styling
 
-        // Event listener untuk overlay
-        sidebarOverlay.addEventListener('click', closeSidebar);
+        searchInputWrapper.classList.toggle('active'); // Aktifkan kelas untuk menampilkan input
 
-        // Event listener untuk setiap link di dalam sidebar (opsional, untuk menutup sidebar setelah klik link)
-        mainMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                // Hanya tutup sidebar jika lebar layar <= 768px (mobile)
-                if (window.innerWidth <= 768) {
-                    closeSidebar();
-                }
-            });
-        });
-
-        // Search Bar Toggle Logic
-        searchIconWrapper.addEventListener('click', function() {
-            const searchMenuItem = searchIconWrapper.closest('.search-menu-item');
-
-            if (window.innerWidth > 768) { // LOGIKA DESKTOP
-                searchMenuItem.classList.toggle('active-search');
-                searchInputWrapper.classList.toggle('active');
-
-                if (searchInputWrapper.classList.contains('active')) {
-                    searchBox.focus();
-                    mainMenu.classList.remove('hidden-menu'); // Pastikan menu terlihat
-                } else {
-                    searchBox.value = '';
-                    cards.forEach(card => {
-                        card.style.display = 'block';
-                    });
-                }
-            } else { // LOGIKA MOBILE (DI DALAM SIDEBAR)
-                // Di mobile, search bar selalu muncul di dalam sidebar
-                // Cukup toggle tampilan input search. Sidebar tetap terbuka.
-                searchInputWrapper.classList.toggle('active');
-                if (searchInputWrapper.classList.contains('active')) {
-                    searchBox.focus();
-                } else {
-                    searchBox.value = '';
-                    cards.forEach(card => {
-                        card.style.display = 'block';
-                    });
-                }
-            }
-        });
-
-        clearSearchBtn.addEventListener('click', function() {
-            searchBox.value = '';
+        if (searchInputWrapper.classList.contains('active')) {
             searchBox.focus();
+            // Pastikan menu terlihat saat search bar muncul (untuk efek scroll-hide)
+            mainMenu.classList.remove('hidden-menu');
+        } else {
+            searchBox.value = '';
             cards.forEach(card => {
                 card.style.display = 'block';
             });
+        }
+    });
+
+    clearSearchBtn.addEventListener('click', function() {
+        searchBox.value = '';
+        searchBox.focus();
+        cards.forEach(card => {
+            card.style.display = 'block';
         });
+    });
 
-        searchBox.addEventListener('keyup', function() {
-            const searchTerm = searchBox.value.toLowerCase();
+    searchBox.addEventListener('keyup', function() {
+        const searchTerm = searchBox.value.toLowerCase();
 
-            cards.forEach(card => {
-                const studentNameElement = card.querySelector('h3');
-                if (studentNameElement) {
-                    const studentName = studentNameElement.textContent.toLowerCase();
+        cards.forEach(card => {
+            const studentNameElement = card.querySelector('h3');
+            if (studentNameElement) {
+                const studentName = studentNameElement.textContent.toLowerCase();
 
-                    if (studentName.includes(searchTerm)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                if (studentName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
                 }
-            });
+            }
         });
+    });
+
+    // Fungsionalitas sembunyikan/tampilkan menu saat scroll (aktif di semua ukuran layar)
+    window.addEventListener('scroll', function() {
+        if (!searchInputWrapper.classList.contains('active')) { // Jika search bar tidak aktif
+            if (window.scrollY > lastScrollY && window.scrollY > 100) { // Scroll ke bawah
+                mainMenu.classList.add('hidden-menu');
+            } else { // Scroll ke atas
+                mainMenu.classList.remove('hidden-menu');
+            }
+        }
+        lastScrollY = window.scrollY;
+    });
+
+    // Deteksi perubahan ukuran layar untuk mereset tampilan search bar
+    window.addEventListener('resize', function() {
+        // Reset tampilan search bar agar tidak ada bug visual saat resize
+        searchInputWrapper.classList.remove('active');
+        searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
+        searchBox.value = '';
+        cards.forEach(card => {
+            card.style.display = 'block';
+        });
+
+        // Pastikan menu terlihat kembali jika di-resize (terutama dari mobile ke desktop)
+        mainMenu.classList.remove('hidden-menu');
+    });
+
+    // Tidak perlu inisialisasi transform atau position di awal lagi, CSS yang atur.
+    // window.innerWidth <= 768 check & mainMenu.style.transform = 'translateX(-100%)'; dihapus.
+});
+// --- Akhir Kode JavaScript ---
 
         // Fungsionalitas sembunyikan/tampilkan menu saat scroll (hanya untuk desktop)
         window.addEventListener('scroll', function() {
-            if (window.innerWidth > 768) { // Hanya aktif di desktop
+            // Hanya aktifkan fungsionalitas ini jika lebar layar > 768px (desktop)
+            if (window.innerWidth > 768) {
                 if (!searchInputWrapper.classList.contains('active')) { // Jika search bar tidak aktif
                     if (window.scrollY > lastScrollY && window.scrollY > 100) { // Scroll ke bawah
                         mainMenu.classList.add('hidden-menu');
@@ -1155,20 +1125,27 @@
                         mainMenu.classList.remove('hidden-menu');
                     }
                 }
-            } else { // Di mobile, menu akan dihandle oleh sidebar, bukan scroll
-                mainMenu.classList.remove('hidden-menu'); // Pastikan tidak tersembunyi karena scroll di mobile
+            } else {
+                // Di mobile, pastikan menu tidak tersembunyi karena efek scroll desktop
+                mainMenu.classList.remove('hidden-menu');
             }
             lastScrollY = window.scrollY;
         });
 
-        // Deteksi perubahan ukuran layar untuk reset sidebar dan menu
+        // Deteksi perubahan ukuran layar untuk mereset tampilan
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
-                // Jika resize ke desktop, pastikan sidebar tertutup dan menu desktop terlihat
-                closeSidebar(); // Tutup sidebar mobile
-                mainMenu.style.transform = ''; // Hapus transform inline untuk kembali ke CSS normal
-                mainMenu.classList.remove('hidden-menu'); // Pastikan menu tidak hidden karena scroll
-                // Reset styling search bar di desktop
+                // Jika resize ke desktop, pastikan menu terlihat dan search bar tertutup secara visual
+                mainMenu.style.position = 'sticky'; // Pastikan position sticky untuk desktop
+                mainMenu.style.top = '0'; // Pastikan di bagian atas
+                mainMenu.style.width = '100%'; // Lebar penuh
+                mainMenu.style.flexDirection = 'row'; // Item menu horizontal
+                mainMenu.style.justifyContent = 'flex-end'; // Item menu ke kanan
+                mainMenu.style.padding = '10px 0'; // Padding default desktop
+                mainMenu.style.boxShadow = 'none'; // Hilangkan bayangan sidebar
+                mainMenu.classList.remove('hidden-menu'); // Pastikan menu terlihat
+
+                // Pastikan search bar toggle dalam kondisi desktop
                 searchInputWrapper.classList.remove('active');
                 searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
                 searchBox.value = '';
@@ -1177,32 +1154,29 @@
                 });
 
             } else {
-                // Jika resize ke mobile, pastikan sidebar tersembunyi jika belum dibuka
-                if (!mainMenu.classList.contains('active-sidebar')) {
-                    mainMenu.style.transform = 'translateX(-100%)'; // Sembunyikan sidebar
-                }
-                // Pastikan search bar toggle di mobile jika tidak sesuai
-                if (searchInputWrapper.classList.contains('active') && !mainMenu.classList.contains('active-sidebar')) {
-                     searchInputWrapper.classList.remove('active');
-                     searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
-                     searchBox.value = '';
-                     cards.forEach(card => {
-                         card.style.display = 'block';
-                     });
-                }
+                // Jika resize ke mobile, pastikan tidak ada inline styles yang mengganggu
+                mainMenu.style.position = 'static'; // Ubah ke static atau biarkan CSS media query yang atur
+                mainMenu.style.width = '100%'; // Ambil lebar penuh
+                mainMenu.style.flexDirection = 'column'; // Item menu vertikal
+                mainMenu.style.alignItems = 'center'; // Pusatkan item
+
+                // Pastikan search bar toggle dalam kondisi mobile
+                // Jika search bar masih aktif, biarkan saja, pengguna mungkin sedang menggunakannya
+                // Jika ingin selalu tertutup saat resize ke mobile, tambahkan:
+                // searchInputWrapper.classList.remove('active');
+                // searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
+                // searchBox.value = '';
+                // cards.forEach(card => { card.style.display = 'block'; });
             }
         });
 
-        // Inisialisasi awal saat halaman dimuat
-        // Pastikan sidebar tersembunyi di mobile pada awalnya
+        // Inisialisasi tampilan menu saat halaman dimuat berdasarkan ukuran layar
         if (window.innerWidth <= 768) {
-            mainMenu.style.transform = 'translateX(-100%)';
+            mainMenu.style.position = 'static'; // Di mobile, menu tidak perlu sticky/fixed, biarkan mengalir
+            mainMenu.style.flexDirection = 'column';
+            mainMenu.style.alignItems = 'center';
+            mainMenu.style.padding = '10px 0'; /* Default padding mobile */
         }
-        // Di desktop, pastikan tidak ada transform inline yang aneh
-        else {
-            mainMenu.style.transform = '';
-        }
-    });
     // --- Akhir Kode JavaScript ---
     </script>
     <script src="script.js"></script>
