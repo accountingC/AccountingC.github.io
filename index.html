@@ -247,12 +247,12 @@
                                     <button class="download-btn" id="download-btn-6">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
                                             <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z"/>
-                                        </path></svg>
-                                    </button>
-                                </a>
-                            </div>
-                            <audio id="audio-player-6" src="https://a.top4top.io/m_32915r57j1.mp3"></audio>
+                                    </path></svg>
+                                </button>
+                            </a>
                         </div>
+                        <audio id="audio-player-6" src="https://a.top4top.io/m_32915r57j1.mp3"></audio>
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -947,6 +947,7 @@
                 <div class="item" style="background-image: url(https://i.ibb.co/RNkk6L0/img6.jpg);">
                     <div class="content">
                         <div class="name">GATAU</div>
+                        <div class="des">BELUM ISI</div>
                     </div>
                 </div>
             </div>
@@ -1057,22 +1058,20 @@
             });
         }
 
+        // Fungsi untuk membuka sidebar
+        function openSidebar() {
+            mainMenu.classList.add('active-sidebar');
+            hamburgerMenu.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Nonaktifkan scroll body
+        }
+
         // Event listener untuk tombol hamburger
         hamburgerMenu.addEventListener('click', function() {
-            mainMenu.classList.toggle('active-sidebar');
-            hamburgerMenu.classList.toggle('active'); // Animasi hamburger
-            sidebarOverlay.classList.toggle('active'); // Tampilkan overlay
             if (mainMenu.classList.contains('active-sidebar')) {
-                document.body.style.overflow = 'hidden'; // Nonaktifkan scroll body
+                closeSidebar();
             } else {
-                document.body.style.overflow = ''; // Aktifkan kembali scroll body
-                // Jika sidebar ditutup, pastikan search bar juga tertutup
-                searchInputWrapper.classList.remove('active');
-                searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
-                searchBox.value = '';
-                cards.forEach(card => {
-                    card.style.display = 'block';
-                });
+                openSidebar();
             }
         });
 
@@ -1092,8 +1091,8 @@
         // Search Bar Toggle Logic
         searchIconWrapper.addEventListener('click', function() {
             const searchMenuItem = searchIconWrapper.closest('.search-menu-item');
-            // Pastikan search bar toggle tidak memicu sidebar di desktop
-            if (window.innerWidth > 768) {
+
+            if (window.innerWidth > 768) { // LOGIKA DESKTOP
                 searchMenuItem.classList.toggle('active-search');
                 searchInputWrapper.classList.toggle('active');
 
@@ -1106,8 +1105,9 @@
                         card.style.display = 'block';
                     });
                 }
-            } else { // Di mobile, search bar selalu muncul di dalam sidebar
-                // Cukup toggle tampilan input search di mobile
+            } else { // LOGIKA MOBILE (DI DALAM SIDEBAR)
+                // Di mobile, search bar selalu muncul di dalam sidebar
+                // Cukup toggle tampilan input search. Sidebar tetap terbuka.
                 searchInputWrapper.classList.toggle('active');
                 if (searchInputWrapper.classList.contains('active')) {
                     searchBox.focus();
@@ -1166,28 +1166,41 @@
             if (window.innerWidth > 768) {
                 // Jika resize ke desktop, pastikan sidebar tertutup dan menu desktop terlihat
                 closeSidebar(); // Tutup sidebar mobile
-                mainMenu.style.transform = 'translateX(0)'; // Pastikan menu di posisi desktop
+                mainMenu.style.transform = ''; // Hapus transform inline untuk kembali ke CSS normal
                 mainMenu.classList.remove('hidden-menu'); // Pastikan menu tidak hidden karena scroll
+                // Reset styling search bar di desktop
+                searchInputWrapper.classList.remove('active');
+                searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
+                searchBox.value = '';
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                });
+
             } else {
                 // Jika resize ke mobile, pastikan sidebar tersembunyi jika belum dibuka
                 if (!mainMenu.classList.contains('active-sidebar')) {
                     mainMenu.style.transform = 'translateX(-100%)'; // Sembunyikan sidebar
                 }
-            }
-            // Tambahkan ini untuk mengatasi jika search bar masih terlihat di mobile setelah resize dari desktop
-            if (window.innerWidth <= 768 && searchInputWrapper.classList.contains('active')) {
-                 searchInputWrapper.classList.remove('active');
-                 searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
-                 searchBox.value = '';
-                 cards.forEach(card => {
-                     card.style.display = 'block';
-                 });
+                // Pastikan search bar toggle di mobile jika tidak sesuai
+                if (searchInputWrapper.classList.contains('active') && !mainMenu.classList.contains('active-sidebar')) {
+                     searchInputWrapper.classList.remove('active');
+                     searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
+                     searchBox.value = '';
+                     cards.forEach(card => {
+                         card.style.display = 'block';
+                     });
+                }
             }
         });
 
         // Inisialisasi awal saat halaman dimuat
+        // Pastikan sidebar tersembunyi di mobile pada awalnya
         if (window.innerWidth <= 768) {
-            mainMenu.style.transform = 'translateX(-100%)'; // Sembunyikan sidebar awal di mobile
+            mainMenu.style.transform = 'translateX(-100%)';
+        }
+        // Di desktop, pastikan tidak ada transform inline yang aneh
+        else {
+            mainMenu.style.transform = '';
         }
     });
     // --- Akhir Kode JavaScript ---
