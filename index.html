@@ -947,7 +947,6 @@
                 <div class="item" style="background-image: url(https://i.ibb.co/RNkk6L0/img6.jpg);">
                     <div class="content">
                         <div class="name">GATAU</div>
-                        <div class="des">BELUM ISI</div>
                     </div>
                 </div>
             </div>
@@ -1043,9 +1042,6 @@
 
         let lastScrollY = window.scrollY; // Simpan posisi scroll terakhir
 
-        // Sembunyikan input search bar secara default
-        searchInputWrapper.classList.add('hidden-search-input');
-
         // Fungsi untuk menutup sidebar (dipanggil oleh overlay dan klik link)
         function closeSidebar() {
             mainMenu.classList.remove('active-sidebar');
@@ -1093,21 +1089,34 @@
             });
         });
 
-        // Search Bar Toggle Logic (tetap sama)
+        // Search Bar Toggle Logic
         searchIconWrapper.addEventListener('click', function() {
             const searchMenuItem = searchIconWrapper.closest('.search-menu-item');
-            searchMenuItem.classList.toggle('active-search');
-            searchInputWrapper.classList.toggle('active');
+            // Pastikan search bar toggle tidak memicu sidebar di desktop
+            if (window.innerWidth > 768) {
+                searchMenuItem.classList.toggle('active-search');
+                searchInputWrapper.classList.toggle('active');
 
-            if (searchInputWrapper.classList.contains('active')) {
-                searchBox.focus();
-                // Jika search bar muncul, pastikan menu terlihat
-                mainMenu.classList.remove('hidden-menu');
-            } else {
-                searchBox.value = '';
-                cards.forEach(card => {
-                    card.style.display = 'block';
-                });
+                if (searchInputWrapper.classList.contains('active')) {
+                    searchBox.focus();
+                    mainMenu.classList.remove('hidden-menu'); // Pastikan menu terlihat
+                } else {
+                    searchBox.value = '';
+                    cards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                }
+            } else { // Di mobile, search bar selalu muncul di dalam sidebar
+                // Cukup toggle tampilan input search di mobile
+                searchInputWrapper.classList.toggle('active');
+                if (searchInputWrapper.classList.contains('active')) {
+                    searchBox.focus();
+                } else {
+                    searchBox.value = '';
+                    cards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                }
             }
         });
 
@@ -1139,10 +1148,10 @@
         // Fungsionalitas sembunyikan/tampilkan menu saat scroll (hanya untuk desktop)
         window.addEventListener('scroll', function() {
             if (window.innerWidth > 768) { // Hanya aktif di desktop
-                if (!searchInputWrapper.classList.contains('active')) {
-                    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                if (!searchInputWrapper.classList.contains('active')) { // Jika search bar tidak aktif
+                    if (window.scrollY > lastScrollY && window.scrollY > 100) { // Scroll ke bawah
                         mainMenu.classList.add('hidden-menu');
-                    } else {
+                    } else { // Scroll ke atas
                         mainMenu.classList.remove('hidden-menu');
                     }
                 }
@@ -1152,21 +1161,31 @@
             lastScrollY = window.scrollY;
         });
 
-        // Deteksi perubahan ukuran layar untuk reset sidebar
+        // Deteksi perubahan ukuran layar untuk reset sidebar dan menu
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
-                // Pastikan sidebar tertutup dan styling desktop aktif jika resize ke desktop
-                closeSidebar();
-                mainMenu.classList.remove('hidden-menu'); // Pastikan menu muncul di desktop
+                // Jika resize ke desktop, pastikan sidebar tertutup dan menu desktop terlihat
+                closeSidebar(); // Tutup sidebar mobile
+                mainMenu.style.transform = 'translateX(0)'; // Pastikan menu di posisi desktop
+                mainMenu.classList.remove('hidden-menu'); // Pastikan menu tidak hidden karena scroll
             } else {
-                 // Sembunyikan menu jika di mobile dan belum dibuka
-                 if (!mainMenu.classList.contains('active-sidebar')) {
-                    mainMenu.style.transform = 'translateX(-100%)';
-                 }
+                // Jika resize ke mobile, pastikan sidebar tersembunyi jika belum dibuka
+                if (!mainMenu.classList.contains('active-sidebar')) {
+                    mainMenu.style.transform = 'translateX(-100%)'; // Sembunyikan sidebar
+                }
+            }
+            // Tambahkan ini untuk mengatasi jika search bar masih terlihat di mobile setelah resize dari desktop
+            if (window.innerWidth <= 768 && searchInputWrapper.classList.contains('active')) {
+                 searchInputWrapper.classList.remove('active');
+                 searchIconWrapper.closest('.search-menu-item').classList.remove('active-search');
+                 searchBox.value = '';
+                 cards.forEach(card => {
+                     card.style.display = 'block';
+                 });
             }
         });
 
-        // Initial check on load
+        // Inisialisasi awal saat halaman dimuat
         if (window.innerWidth <= 768) {
             mainMenu.style.transform = 'translateX(-100%)'; // Sembunyikan sidebar awal di mobile
         }
