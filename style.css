@@ -1,3 +1,5 @@
+/* style.css */
+
 * {
     box-sizing: border-box;
 }
@@ -7,45 +9,66 @@ body {
     padding: 0;
     background-color: #374151;
 }
+
+/* --- PERBAIKAN UNTUK MENU NAVIGASI (AGAR SAMA DENGAN DESKTOP DI HP) --- */
 .menu {
     display: flex;
-    justify-content: space-around; /* Menyebar item secara merata */
     background-color: #1d1d1e;
     padding: 10px 0;
-    border-radius: 12px;
+    border-radius: 12px; /* Mungkin ingin menghapus ini untuk menu full-width */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 100%; /* Memastikan navbar memanjang penuh */
+    width: 100%;
+    /* Pertahankan ini agar justify-content di ul tetap berfungsi */
+    justify-content: flex-end; /* Posisikan item menu ke kanan di desktop DAN mobile */
+    align-items: center; /* Pusatkan vertikal */
+    position: sticky; /* Tetap sticky di semua ukuran layar */
+    top: 0;
+    z-index: 1000;
+    transition: top 0.3s ease-out; /* Untuk efek scroll-hide */
 }
+
 .menu ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-    flex-wrap: nowrap; /* Prevent wrapping */
+    flex-wrap: nowrap; /* **PENTING: Cegah wrapping di desktop DAN mobile** */
+    width: auto; /* **PENTING: Lebar ul menyesuaikan konten, tidak 100%** */
+    justify-content: center; /* Pusatkan item menu di ul */
 }
+
 .menu ul li {
     margin: 0 10px;
+    flex-shrink: 0; /* Pastikan item tidak menyusut */
+    /* Pastikan tidak ada properti width/height kaku di sini yang membatasi */
 }
+
 .menu ul li a {
     color: #fff;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-size: 20px;
     text-decoration: none;
-    height: 70px;
-    width: 70px;
+    padding: 5px 0;
     position: relative;
-    text-align: center; /* Center text */
+    height: 60px; /* Pertahankan tinggi item link */
+    width: 80px; /* Pertahankan lebar item link */
 }
+
 .menu ul li a .title {
     position: absolute;
     font-size: 16px;
-    top: 50%;
+    top: auto;
+    bottom: 5px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     opacity: 0;
     transition: .5s;
+    white-space: nowrap;
 }
+
 .menu ul li a .icon {
     position: absolute;
     font-size: 20px;
@@ -60,6 +83,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .menu ul li a:hover .title {
     transform: translate(-50%, calc(-50% + 10px));
     opacity: 1;
@@ -70,8 +94,11 @@ body {
     color: #fff;
     outline: 4px #fff solid;
 }
+/* --- AKHIR PERBAIKAN MENU NAVIGASI --- */
+
+
 .nav {
-    background-color: black; /* Warna biru */
+    background-color: black;
     color: #fff;
     padding: 1em;
     text-align: center;
@@ -98,7 +125,7 @@ body {
 }
 
 .nav a:hover {
-    color: #FFD700; /* Warna emas saat hover */
+    color: #FFD700;
 }
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
@@ -248,7 +275,7 @@ svg {
 .birthday {
     font-size: 1em;
     margin-top: 10px;
-    color: #888; /* Warna abu-abu untuk tanggal ulang tahun */
+    color: #888;
 }
 footer {
     text-align: center;
@@ -262,24 +289,7 @@ footer {
 footer p {
     margin: 0;
 }
-@media (max-width: 768px) {
-    .menu ul {
-        flex-direction: row; /* Pastikan tetap horizontal */
-        justify-content: space-around; /* Distribute space evenly */
-    }
-    .menu ul li {
-        margin: 0 5px; /* Adjust margin for mobile */
-    }
-    .hero h1 {
-        font-size: 2em;
-    }
-    .gallery h2 {
-        font-size: 2em;
-    }
-    .card {
-        width: 90%;
-    }
-}
+
 .gift-popup {
     display: none;
     position: fixed;
@@ -314,7 +324,6 @@ footer p {
     background-color: #0056b3;
 }
 
-/* Gaya untuk ucapan selamat ulang tahun */
 .birthday-message {
     display: none;
     position: fixed;
@@ -346,3 +355,22 @@ footer p {
 .birthday-message button:hover {
     background-color: #0056b3;
 }
+/* Media Query asli di style.css, kita hapus ini dan pindahkan kontrol ke search.css */
+/* @media (max-width: 768px) {
+    .menu ul {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .menu ul li {
+        margin: 0 5px;
+    }
+    .hero h1 {
+        font-size: 2em;
+    }
+    .gallery h2 {
+        font-size: 2em;
+    }
+    .card {
+        width: 90%;
+    }
+} */
