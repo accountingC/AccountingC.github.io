@@ -80,7 +80,7 @@
     box-shadow: 2px 0 5px rgba(0,0,0,0.3);
     z-index: 1000;
     transition: transform 0.3s ease-out; /* Transisi untuk efek slide */
-    /* transform: translateX(-100%); <-- Ini akan diatur oleh JS di awal */
+    /* !Catatan: transform: translateX(-100%); diatur oleh JS di awal untuk menghindari flash */
     display: flex; /* Untuk menata konten sidebar secara vertikal */
     flex-direction: column;
     overflow-y: auto; /* Aktifkan scroll jika konten menu terlalu banyak */
@@ -247,8 +247,10 @@
 
     /* Sembunyikan menu di posisi awal mobile */
     .menu {
-        /* transform: translateX(-100%); <-- Dihapus karena diatur oleh JS di awal */
+        /* transform: translateX(-100%); diatur oleh JS pada awal load/resize */
         padding-top: 60px; /* Beri ruang untuk tombol close atau judul di sidebar jika ada */
+        /* Pastikan sidebar tetap di layar dan tidak ada scrollbar horizontal */
+        overflow-x: hidden;
     }
 
     .menu.active-sidebar {
